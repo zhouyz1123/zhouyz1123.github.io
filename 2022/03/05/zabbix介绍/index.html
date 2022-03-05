@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>归档: 2022 | 周扬臻的个人博客</title>
+  <title>zabbix介绍 | 周扬臻的个人博客</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -504,123 +504,485 @@
   
 </header>
         <!-- 内容区域 -->
-        <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-archive" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
-<div class="archive-header" style="background-image:url('https://pic1.zhimg.com/80/v2-1414b3a4b205e19060db18a20d08723a_1440w.jpg?source=1940ef5c')">
-  <div class="archive-header-title">
-    archive
-  </div>
-  <div class="archive-header-desc">
+        
+ <!-- prismjs 代码高亮 -->
+ 
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('/medias/1.jpg')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-  <span class="title" id="archive-header-desc"></span>
-  <script>
-  function typedFn() {
-    const el = '#archive-header-desc';
-    const type = 'archive';
-    let desc = '愿你如风，被人温柔以待'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-  
-  </div>
-  <div class="mask-box"></div>
-</div>
-
-<div class="archive-video">
-  <video class="full-video" autoplay loop muted>
-      <source style="width: 100%;height: 100vh;" src="/">
-  </video>
-  <div class="video-header-title">
-    archive
-  </div>
-  <div class="video-header-desc">
-  
-      <span class="title" id="archive-video-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#archive-video-header-desc';
-    const type = 'archive';
-    let desc = '愿你如风，被人温柔以待'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-      
-  </div>
-  <div class="mask-box"></div>
-</div>
-
-<!-- hash算法 -->
-
-
-<div class="archive-main">
-  <section class="archive">
-    <div class="archive-content">
-      <ul class="post-archive">
-        
-        
-          
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2022">2022</a>
-            </div>
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/03/05/zabbix%E4%BB%8B%E7%BB%8D/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/1.jpg" class="lazyload placeholder" data-srcset="/medias/1.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">03-05</span>
-              </div>
-              <a class="post-title" href="/2022/03/05/zabbix%E4%BB%8B%E7%BB%8D/">zabbix介绍</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/03/05/hello-world/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="/medias/7.jpg" class="lazyload placeholder" data-srcset="/medias/7.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">03-05</span>
-              </div>
-              <a class="post-title" href="/2022/03/05/hello-world/">Hello World</a>
-            </div>
-          </li>
-        
-      </ul>
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        zabbix介绍
+      </span>
     </div>
-  </section>
-  <div class="w-70">
+    
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> 发表于：2022-03-05 |
+        </span>
+      
+
+      
+
+      
     
   </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
 </div>
+
+
+
+
+
+<div class="row justify-position" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <h3 id="系统监控需求"><a href="#系统监控需求" class="headerlink" title="系统监控需求"></a>系统监控需求</h3><blockquote>
+<p>在互联网的应用中，我们大量的使用网络和服务器来完成项目平台的搭建，在系 统运维过程中，我们需要获取很多网络和服务器运行的信息，比如:网络流量、 主机CPU 使用率、主机内存使用率、主机磁盘使用率等。这些信息我们可以通 过网络或主机设备上的命令行指令获取，但这样很不方便，尤其是主机和设备非 常多的情况下获取这些信息。想象一下我们管理的是由1000 多台物理服务器和 50 多台网络交换或路由设备组成的一个私有云，如果我们需要人工的获取这些 服务器和设备的运行状态、网络流量和服务状态是非常耗时且无法完成的。更不 要说在这1000 多台物理服务器上运行着3000 或更多的虚拟服务器，每个服务器 上又运行着相互关联的负责均衡集群、分布式计算集群、分布式存储集群、高性 能计算集群等复杂的应用集群方案。我们必须实时的获取它们的运行状态，并且 分析在过去1 小时、24 小时、1 周、1 月、1 年的数据变化趋势。我们需要获取 和保持这些数据并且在需要的时候能够方便的展示出它们的可视化视图。 不仅仅是获取实时的运行数据，我们还需要有一套完整的报警机制。在服务器、 网络设备、资源服务、业务逻辑等出现异常的时候可以通过WEB、邮件、短信、 电话等方式自动化的通知管理人员。这种报警机制必须是可配置的，可以根据我 们系统应用的具体情况做出合理的方案，比如设置CPU 使用阀值、报告内存突 然的增⻓、服务器流量异常、应用服务负载异常、集群服务故障迁移等等情况。 随着项目的的推进，我们还需要通过分析记录数据预估出未来可能需要的资源容 量，例如服务器数量是否需要增添及何时增添、网络带宽是否出现瓶颈及何时增 添、应用服务器是否需要平行宽展及何时扩展等等。这些都需要大量且⻓期的数 据分析支撑，也就是⻓期有效的系统监控数据支撑。</p>
+</blockquote>
+<h3 id="常见监控解决方案"><a href="#常见监控解决方案" class="headerlink" title="常见监控解决方案"></a>常见监控解决方案</h3><blockquote>
+<p>早期，网络环境中的设备数量尚且不多的时候，人们需要监控的仅仅是几台服务器、一些交换机以及少量的其他设备。首先就需要有方法将人们关心的各项数据 从设备中提取出来，然后再考虑如何集中化的展示出来。 为了满足提取各项数据的需求，互联网工程工作小组(IETF,Internet Engineering Task Force)定义并发布了简单网络管理协议(SNMP)。该协议 能够支持网络管理系统，用以监控连接到网络上的各种设备。Linux系统当然也 支持该协议。人们可以使用SNMP协议获取主机CPU、内存、磁盘、网卡流量等 数据，很多商业网络设备如路由器、交换机等基本也支持SNMP协议。</p>
+<p>最初，人们用脚本将获取到的SNMP数据存入数据库中，然后再使用一种名为 MRTG的软件根据获取的数据绘制图表来分析数据的变化。MRTG(Multi Router Traffic Grapher)，顾名思义，这款软件最初是设计用于监控网络链路流量负载 的。它可以用过SNMP获取到设备的流量信息，并根据这些信息绘制成图表并保 存为PNG格式的图片，再将这些PNG图片以HTML⻚面的方式显示给用户。</p>
+<p>不过，MRTG展示的⻚面和图表曲线相对简陋，它在一张图片中最多只能绘制两 个数据的变化曲线，并且由于是PNG格式的静态图片，所以无法针对某一时间进 行细化展示。为了解决这个问题，人们又开发了RRDTOOL工具。 RRDTOOL(Round Robin Database Tool)是一个强大的绘图引擎。RRDTOOL可 以使用自己的环状数据库(RRD)来记录绘图数据，也可以使用关系型数据库， 例如MySQL来纪录数据。利用RRDTOOL我们就可以将获取到的SNMP数据通过 RRDTOOL进行实时绘图，这么一来，想看什么时候的数据，只要调取那个时间 的监控数据，让RRDTOOL帮我们画一张图出来就可以直观又清晰的查看了。目 前，几乎所有的开源监控软件都在使用RRDTOOL作为图形绘制引擎。 不过，直接使用RRDTOOL绘图操作起来很麻烦。同时，现如今的数据中心动辄 成百上千的设备，一个个的去提取、绘制、监控显然是不现实的事情。况且，不 同的设备监控的对象和方法也不同。有些数据依靠SNMP也提取不到(例如MySQL查询缓存命中率)。我们迫切的需要一个可以支持多种不同的监控手 段，同时具有分类组织图形并且可以按照分类⻚面的方式展示这些图形的工具。 另外，考虑到企业组织结构越来越复杂，参与监控的人员往往属于不同的部⻔或 者工作组，不同的人也应该限定具有不同层级的监控浏览权限。除此之外，还有 很多各种各样杂七杂八的需求不一而足。所以，现如今的监控软件不可以再像 MRTG那样仅仅画张图就了事，还需要考虑更加丰富的功能。</p>
+<p>Cacti 是一套基于PHP、MySQL、SNMP 及RRDTool 开发的监测图形分析工具。 它提供了非常强大的数据和用户管理功能，可以指定每一个用户能查看树状结 构、主机以及任何一张图，还可以与轻量级目录服务(LDAP)结合进行用户验 证，同时也能自己编写模板，功能非常强大完善界面友好。可是随着设备的不断 增多，Cacti 的运行机制就不能满足我们的需求了。Cacti 是使用轮询的方式由主 服务器向设备发送数据请求来获取设备上状态数据信息的，如果设备不断增多， 这个轮询的过程就非常的耗时，轮询的结果就不能即时的反应设备的状态了。</p>
+<p>Cacti 监控关注的是对数据的展示，却不关注数据异常后的反馈。如果凌晨3 点 的时候设备的某个数据出现异常，除非监控人员在屏幕前发现这个异常变化，否 则是没有任何报警机制能够让我们道出现了异常。这个时候我们就需要一种可以 根据我们预设阀值报警的工具。自动化监控报警服务有很多，其中商业应用比较 昂贵且多以硬件为主，开源自动化监控报警服务中最著名的也是应用最广泛的是 Nagios。</p>
+<p>Nagios 是一款开源的免费网络监控报警服务，能有效监控Windows、Linux 和 Unix 的主机状态，交换机、路由器和防火墙等网络设置，打印机、网络投影、 网络摄像等设备。在系统或服务状态异常时发出邮件或短信报警第一时间通知运 维人员，在状态恢复后发出正常的邮件或短信通知。Nagios 有完善的插件功能，可以方便的根据应用服务扩展功能。Nagios 可以使用服务-代理(Server- Agent)方式获取主机信息，也可以使用SNMP 方式获取设备信息。使用服务器- 代理(Server-Agent)方式在每个主机上运行代理软件，主机上的代理软件主动 提交数据信息，可以避免服务器轮询带来的延迟和非实时性等问题。</p>
+<p>Nagios 已经可以支持由数万台服务器或上千台网络设备组成的云技术平台的监 控，它可以充分发挥自动化运维技术特点在设备和人力资源减少成本。只是 Nagios 无法将多个相同应用集群的数据集合起来，也不能监控到集群中特殊节 点的迁移和恢复。一个新的监控服务根据这个需求被设计出来，它就是 Ganglia。</p>
+<p>Ganglia 是UC Berkeley 发起的一个开源集群监视项目，设计用于测量数以千计 的节点。Ganglia 的核心包含gmond、gmetad 以及一个Web 前端。主要是用来 监控系统性能，如:CPU 、内存、硬盘利用率，I&#x2F;O 负载、网络流量情况等，通 过曲线很容易⻅到每个节点的工作状态，对合理调整、分配系统资源，提高系统 整体性能起到重要作用，目前是监控HADOOP 的官方推荐服务。</p>
+<p>Ganglia 分为服务器端、客户端和一个Web 前端，其中gmetad 是服务器端， gmond 是客户端。服务器端只有一个，而被监控服务器均安装客户端。Ganglia 采用Internet IPv4 类D 地址中的的组播进行数据请求。gmetad 发送一个请求到 一个组播地址，由于使用组播</p>
+<p>方式gmetad 只需发送一次请求包即可完成对所有gmond 的轮询。然后gmond 通过这个请求将采集到的数据返回给gmetad，gmetad 将数据保存在数据库中， 通过RRDTool 绘制图表，然后通过Web 界面展示分类的⻚面。</p>
+</blockquote>
+<h3 id="Zabbix是什么"><a href="#Zabbix是什么" class="headerlink" title="Zabbix是什么?"></a>Zabbix是什么?</h3><blockquote>
+<p>Zabbix是一个基于WEB界面的提供分布式系统监视以及网络监视功能的企业级 的开源解决方案。zabbix能监视各种网络参数，保证服务器系统的安全运营;并 提供灵活的通知机制以让系统管理员快速定位&#x2F;解决存在的各种问题。 Zabbix由2部分构成，zabbix server与可选组件zabbix agent。zabbix server可 以通过SNMP，zabbix agent，ping，端口监视等方法提供对远程服务器&#x2F;网络状 态的监视，数据收集等功能，它可以运行在Linux, Solaris, HP-UX, AIX, Free BSD, Open BSD, OS X等平台上。zabbix agent需要安装在被监视的目标服务器 上，它主要完成对硬件信息或与操作系统有关的内存，CPU等信息的收集。 zabbix agent可以运行在Linux,Solaris,HP-UX,AIX,Free BSD,Open BSD, OS X, Tru64&#x2F;OSF1, Windows NT4.0, Windows (2000&#x2F;2003&#x2F;XP&#x2F;Vista)等系统之上。 zabbix server可以单独监视远程服务器的服务状态;同时也可以与zabbix agent 配合，可以轮询zabbix agent主动接收监视数据(agent方式)，同时还可被动接收zabbix agent发送的数据(trapping方式)。另外zabbix server还支持 SNMP (v1,v2)，可以与SNMP软件(例如:net-snmp)等配合使用。 相比较Cacti，Zabbix具有不亚于Cacti的图形表现效果，同时还支持监控报警功 能。并且内置的监控模板比Cacti要丰富的多得多。 相比较Nagios，Zabbix安装配置要简单的多，利于实现。同时学习成本也要低 得多。在监控性能方面也不亚于Nagios。 因此，目前越来越多的公司开始使用Zabbix作为监控的最佳解决方案。</p>
+</blockquote>
+<h3 id="Zabbix的优缺点"><a href="#Zabbix的优缺点" class="headerlink" title="Zabbix的优缺点"></a>Zabbix的优缺点</h3><blockquote>
+<ul>
+<li><p>优点:</p>
+<ul>
+<li>开源，无软件成本投入</li>
+<li>Server 对设备性能要求低<br>支持设备多，自带多种监控模板 支持分布式集中管理，有自动发现功能，可以实现自动化监控 开放式接口，扩展性强，插件编写容易<br>当监控的item 比较多服务器队列比较大时可以采用被动状态，被监控客户端主 动从server 端去下载需要监控的item 然后取数据上传到server 端。这种方式对服务 器的负载比较小。</li>
+<li>Api 的支持，方便与其他系统结合</li>
+</ul>
+</li>
+<li><p>缺点: 需在被监控主机上安装agent，所有数据都存在数据库里，产生的数据据很大，瓶颈主要在数据库。</p>
+</li>
+</ul>
+</blockquote>
+
+      </div>
+      <div class="post-tags-categories">
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>作者:  </strong>周扬臻</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>文章链接:  </strong>
+    <a href="/2022/03/05/zabbix介绍/" target="_blank" title="zabbix介绍">http://example.com/2022/03/05/zabbix介绍/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>版权声明:   </strong>
+      本网站所有文章除特别声明外,均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      许可协议。转载请注明出处!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/7.jpg" class="lazyload placeholder" data-srcset="/medias/7.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+    </div>
+    <a href="/2022/03/05/hello-world/" class="post-nav-link">
+      <div class="title">
+        下一篇: <i class="fas fa-angle-right"></i>
+        <div class="title-text">Hello World</div>
+      </div>
+      <!-- <div class="content">
+        Welcome to Hexo! This is your very first post. Check documen
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+      <div id="appDonate" class="post-donate">
+  <div id="donate_board" class="donate_bar center" ref="donate">
+    <a id="btn_donate" class="btn_donate" href="javascript:;" title="打赏" @click="showDialogDrawer()"></a>
+  </div>
+  <transition name="fade">
+    <div 
+      class="donate-box-mask"
+      v-cloak 
+      v-show="visible"
+      @click="cancelDialogDrawer()"
+    >
+    </div>
+  </transition>
+  <transition name="bounce">
+    <div class="donate-box" v-cloak v-show="visible">
+      <div class="donate-box_close">
+        <i class="fas fa-times" aria-hidden="true" @click="cancelDialogDrawer" pointer></i>
+      </div>
+      <div class="donate-box_title">
+        <h4>
+          你的赏识是我前进的动力
+        </h4>
+      </div>
+      <div class="donate-box_tab">
+        <div class="Alipay" pointer :class="{'active': tabActive === 'Alipay'}" @click="changeTabActive('Alipay')">
+          支付宝
+        </div>
+        <div class="WeChatpay" pointer :class="{'active': tabActive === 'WeChatpay'}" @click="changeTabActive('WeChatpay')">
+          微信
+        </div>
+      </div>
+      <div class="donate-box_img">
+        <div class="AlipayImg" v-show="tabActive === 'Alipay'">
+          <img src="/medias/zfb.jpg" class="lazyload placeholder" data-srcset="/medias/zfb.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="支付宝打赏" />
+        </div> 
+        <div class="WeChatpayImg" v-show="tabActive === 'WeChatpay'">
+          <img src="/medias/wx.jpg" class="lazyload placeholder" data-srcset="/medias/wx.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="微信打赏" />
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDonate',
+    data: {
+      visible: false,
+      tabActive: 'Alipay',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        // function getScroll() {
+        //   return {
+        //     left: window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0,
+        //     top: window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0
+        //   };
+        // }
+        this.top = $(document).scrollTop() // or getScroll().top
+        // console.log('aa', $('.main-content'));
+        body.style.cssText = 'overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+      changeTabActive(name) {
+        this.tabActive = name;
+      }
+    },
+    created() {}
+  })
+</script>
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <!-- 文章详情页右侧目录 -->
+
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fas fa-list-ul" aria-hidden="true"></i><span>本文目录</span>
+        
+          <div class="toc-open-close">本文目录</div>
+        
+      </div>
+      <div class="toc-content">
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 手机端目录按钮 -->
+  <div id="toc-mobile-btn">
+    <i class="fas fa-list-ul" aria-hidden="true"></i>
+  </div>
+
+
+<script>
+  function closeToc(init) {
+    $(".toc-aside").css({'width': 0, 'padding': 0, 'transition': init ?  'noe' : 'width 0.3s' });
+    $(".toc-content").css({'width': 0});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+  };
+  function openToc() {
+    $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+    $(".toc-aside").css({'width': '300px', 'padding': '0 10px', 'transition': 'width 0.3s'});
+    $(".toc-content").css({'width': '300px'});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+  }
+  function openBtnClickFn () {
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open) {
+        closeToc();
+        open = false;
+      } else {
+        openToc();
+        open = true;
+      }
+    });
+  };
+  openBtnClickFn();
+  initCloseTocWidth(true);
+
+  function initCloseTocWidth(init) {
+    if (window.innerWidth >= 992) {
+      let isClose = false;
+      isClose && closeToc(init)
+    }
+  }
+
+  document.addEventListener('pjax:complete', function () {
+    $(".toc-aside").css({'transition': 'no'});
+  })
+  document.addEventListener('pjax:complete', function () {
+    openBtnClickFn();
+  })
+  
+</script>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '180000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || '';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+  <script>
+  function loadMermaid() {
+    if (document.getElementsByClassName('mermaid').length) {
+      if (window.mermaidJsLoad) mermaid.init()
+      else {
+        loadScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(() => {
+          window.mermaidJsLoad = true
+          mermaid.initialize({
+            theme: 'default',
+          })
+          if ('true') {
+            mermaid.init();
+          }
+        })
+      }
+    }
+  };
+  document.addEventListener("DOMContentLoaded", function () {
+    loadMermaid();
+  })
+
+  document.addEventListener('pjax:complete', function () {
+    loadMermaid();
+  })
+  
+</script>
+
 
       </main>
     </div>

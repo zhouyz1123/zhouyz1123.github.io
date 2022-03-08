@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>周扬臻的个人博客</title>
+  <title>基础知识及其概念 | 周扬臻的个人博客</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -518,14 +518,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/medias/1.jpg')">
+  background-position: center center;position: relative;background-image:url('/medias/6.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        
+        基础知识及其概念
       </span>
     </div>
     
@@ -590,47 +590,42 @@
 <p>线程是CPU调度的最小单位</p>
 <h3 id="进程查看"><a href="#进程查看" class="headerlink" title="进程查看"></a>进程查看</h3><h4 id="查看当前终端的进程"><a href="#查看当前终端的进程" class="headerlink" title="查看当前终端的进程"></a><strong>查看当前终端的进程</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># ps</span></span><br><span class="line">    PID TTY          TIME CMD</span><br><span class="line">   6841 pts/0    00:00:00 bash</span><br><span class="line">   7141 pts/0    00:00:00 ps</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>CMD</p>
-</li>
-<li><ul>
-<li>进程名称</li>
-</ul>
-</li>
-<li><p>PID</p>
-</li>
-<li><ul>
-<li>进程ID</li>
-</ul>
-</li>
-</ul>
+<p>CMD</p>
+<p>​        进程名称</p>
+<p>PID</p>
+<p>​        进程ID</p>
 <h4 id="查看所有进程"><a href="#查看所有进程" class="headerlink" title="查看所有进程"></a><strong>查看所有进程</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># ps aux | less </span></span><br><span class="line">USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span><br><span class="line">root           1  0.0  0.3 190976  3828 ?        Ss   09:04   0:01 /usr/lib/systemd/systemd --switched-root --system --deserialize 22</span><br><span class="line">root           2  0.0  0.0      0     0 ?        S    09:04   0:00 [kthreadd]</span><br><span class="line">root           3  0.0  0.0      0     0 ?        S    09:04   0:00 [ksoftirqd/0]</span><br><span class="line">root           5  0.0  0.0      0     0 ?        S&lt;   09:04   0:00 [kworker/0:0H]</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>RSS    物理内存集</p>
-</li>
-<li><ul>
-<li>进程所消耗物理内存大小</li>
-</ul>
-</li>
-<li><p>VSZ    虚拟内存集</p>
-</li>
-<li><ul>
-<li><p>物理内存 + 共享内存 + swap(可能)</p>
-</li>
-<li><p>共享内存</p>
-</li>
-<li><ul>
-<li>实现进程间通信</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>&#96;&#96;&#96;bash<br>[root@hosta ~]# ps -elf<br>F S UID          PID    PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD<br>4 S root           1       0  0  80   0 - 31360 ep_pol 11:01 ?        00:00:01 &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;systemd –switched-root –system –deserialize 22<br>1 S root           2       0  0  80   0 -     0 kthrea 11:01 ?        00:00:00 [kthreadd]<br>1 S root           3       2  0  80   0 -     0 smpboo 11:01 ?        00:00:00 [ksoftirqd&#x2F;0]<br>1 S root           5       2  0  60 -20 -     0 worker 11:01 ?        00:00:00 [kworker&#x2F;0:0H]<br>1 S root           6       2  0  80   0 -     0 worker 11:01 ?        00:00:00 [kworker&#x2F;u256:0]<br>1 S root           7       2  0 -40   - -     0 smpboo 11:01 ?        00:00:00 [migration&#x2F;0]<br>1 S root           8       2  0  80   0 -     0 rcu_gp 11:01 ?        00:00:00 [rcu_bh]</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- - PPID	</span><br><span class="line"></span><br><span class="line">  - - 父进程ID</span><br><span class="line"></span><br><span class="line">#### **查看内存容量** </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>[root@hosta ~]# free -m<br>        total        used        free      shared  buff&#x2F;cache   available<br>Mem:           3932         111        3686          11         133        3614<br>Swap:          2047           0        2047</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">####  进程状态</span><br><span class="line"></span><br><span class="line">- CPU按时间切片调度执行多个任务/进程 </span><br><span class="line"></span><br><span class="line">- R  </span><br><span class="line"></span><br><span class="line">- - 运行状态 </span><br><span class="line"></span><br><span class="line">- S</span><br><span class="line"></span><br><span class="line">- - 可中断的睡眠状态  </span><br><span class="line"></span><br><span class="line">- D</span><br><span class="line"></span><br><span class="line">- - 不可中断的睡眠状态 </span><br><span class="line"></span><br><span class="line">- T </span><br><span class="line"></span><br><span class="line">- - 终止状态 </span><br><span class="line"></span><br><span class="line">- Z	</span><br><span class="line"></span><br><span class="line">- - 僵尸进程</span><br><span class="line">  - 当进程被销毁时，父进程没有办法回收内存资源</span><br><span class="line"></span><br><span class="line">###### 孤儿进程/僵尸进程</span><br><span class="line"></span><br><span class="line">1、孤儿进程：子进程执行完毕时发现父进程已退出，子进程变成为了孤儿进程。孤儿进程后期会被系统的 init 进程接管，并 wait/waitpid 其执行状态做回收处理。对系统并无危害。</span><br><span class="line"></span><br><span class="line">2、僵尸进程：子进程执行完毕时发现父进程未退出，会向父进程发送 SIGCHLD 信号。但父进程没有使用 wait/waitpid 或其他方式处理 SIGCHLD 信号来回收子进程，子进程变成为了对系统有害的僵尸进程。</span><br><span class="line"></span><br><span class="line">僵尸进程无法被系统有效的回收，ps 查看时状态为 Z 的即为僵尸进程，或 top 命令可直接看到 zombie 的个数。僵尸进程的父进程此时一定仍在运行，产生僵尸进程的元凶其实是他们的父进程，杀掉父进程，僵尸进程就变为了孤儿进程，便可以转交给 init 进程回收处理。</span><br><span class="line"></span><br><span class="line">###### **查看CPU的个数**</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">[root@hosta ~]# nproc </span><br><span class="line">4</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# lscpu</span><br><span class="line">Architecture:          x86_64</span><br><span class="line">CPU op-mode(s):        32-bit, 64-bit</span><br><span class="line">Byte Order:            Little Endian</span><br><span class="line">CPU(s):                2</span><br></pre></td></tr></table></figure></li>
-</ul>
+<p>RSS    物理内存集</p>
+<p>​        进程所消耗物理内存大小</p>
+<p>VSZ    虚拟内存集</p>
+<p>​        物理内存 + 共享内存 + swap(可能)</p>
+<p>​        共享内存(实现进程间通信)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># ps -elf </span></span><br><span class="line">F S UID          PID    PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD</span><br><span class="line">4 S root           1       0  0  80   0 - 31360 ep_pol 11:01 ?        00:00:01 /usr/lib/systemd/systemd --switched-root --system --deserialize 22</span><br><span class="line">1 S root           2       0  0  80   0 -     0 kthrea 11:01 ?        00:00:00 [kthreadd]</span><br><span class="line">1 S root           3       2  0  80   0 -     0 smpboo 11:01 ?        00:00:00 [ksoftirqd/0]</span><br><span class="line">1 S root           5       2  0  60 -20 -     0 worker 11:01 ?        00:00:00 [kworker/0:0H]</span><br><span class="line">1 S root           6       2  0  80   0 -     0 worker 11:01 ?        00:00:00 [kworker/u256:0]</span><br><span class="line">1 S root           7       2  0 -40   - -     0 smpboo 11:01 ?        00:00:00 [migration/0]</span><br><span class="line">1 S root           8       2  0  80   0 -     0 rcu_gp 11:01 ?        00:00:00 [rcu_bh]</span><br></pre></td></tr></table></figure>
+
+
+
+<p>PPID    </p>
+<p>​        父进程ID</p>
+<h4 id="查看内存容量"><a href="#查看内存容量" class="headerlink" title="查看内存容量"></a><strong>查看内存容量</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]# free -m</span><br><span class="line">              total        used        free      shared  buff/cache   available</span><br><span class="line">Mem:           3932         111        3686          11         133        3614</span><br><span class="line">Swap:          2047           0        2047</span><br></pre></td></tr></table></figure>
+
+<h4 id="进程状态"><a href="#进程状态" class="headerlink" title="进程状态"></a>进程状态</h4><p>CPU按时间切片调度执行多个任务&#x2F;进程 </p>
+<p>R  </p>
+<p>​        运行状态 </p>
+<p>S</p>
+<p>​        可中断的睡眠状态  </p>
+<p>D</p>
+<p>​        不可中断的睡眠状态 </p>
+<p>T </p>
+<p>​        终止状态 </p>
+<p>Z    </p>
+<p>​        僵尸进程</p>
+<p>​        当进程被销毁时，父进程没有办法回收内存资源</p>
+<h6 id="孤儿进程-x2F-僵尸进程"><a href="#孤儿进程-x2F-僵尸进程" class="headerlink" title="孤儿进程&#x2F;僵尸进程"></a>孤儿进程&#x2F;僵尸进程</h6><p>1、孤儿进程：子进程执行完毕时发现父进程已退出，子进程变成为了孤儿进程。孤儿进程后期会被系统的 init 进程接管，并 wait&#x2F;waitpid 其执行状态做回收处理。对系统并无危害。</p>
+<p>2、僵尸进程：子进程执行完毕时发现父进程未退出，会向父进程发送 SIGCHLD 信号。但父进程没有使用 wait&#x2F;waitpid 或其他方式处理 SIGCHLD 信号来回收子进程，子进程变成为了对系统有害的僵尸进程。</p>
+<p>僵尸进程无法被系统有效的回收，ps 查看时状态为 Z 的即为僵尸进程，或 top 命令可直接看到 zombie 的个数。僵尸进程的父进程此时一定仍在运行，产生僵尸进程的元凶其实是他们的父进程，杀掉父进程，僵尸进程就变为了孤儿进程，便可以转交给 init 进程回收处理。</p>
+<h6 id="查看CPU的个数"><a href="#查看CPU的个数" class="headerlink" title="查看CPU的个数"></a><strong>查看CPU的个数</strong></h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># nproc </span></span><br><span class="line">4</span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># lscpu</span></span><br><span class="line">Architecture:          x86_64</span><br><span class="line">CPU op-mode(s):        32-bit, 64-bit</span><br><span class="line">Byte Order:            Little Endian</span><br><span class="line">CPU(s):                2</span><br></pre></td></tr></table></figure>
+
 <h6 id="查看进程树"><a href="#查看进程树" class="headerlink" title="查看进程树"></a>查看进程树</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># pstree </span></span><br><span class="line">systemd─┬─NetworkManager───2*[&#123;NetworkManager&#125;]</span><br><span class="line">        ├─VGAuthService</span><br><span class="line">        ├─agetty</span><br><span class="line">        ├─auditd───&#123;auditd&#125;</span><br><span class="line">        ├─crond</span><br><span class="line">        ├─dbus-daemon</span><br><span class="line">        ├─irqbalance</span><br></pre></td></tr></table></figure>
 
 <h6 id="获取进程ID"><a href="#获取进程ID" class="headerlink" title="获取进程ID"></a>获取进程ID</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># pidof vim</span></span><br><span class="line">9580</span><br><span class="line">[root@hosta ~]<span class="comment"># pgrep vim</span></span><br><span class="line">9580</span><br></pre></td></tr></table></figure>
@@ -639,35 +634,18 @@
 
 <h2 id="查看主机性能状态"><a href="#查看主机性能状态" class="headerlink" title="查看主机性能状态"></a>查看主机性能状态</h2><h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><h4 id="查看CPU的平均负载"><a href="#查看CPU的平均负载" class="headerlink" title="查看CPU的平均负载"></a><strong>查看CPU的平均负载</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># uptime </span></span><br><span class="line"> 14:59:17 up  3:58,  3 <span class="built_in">users</span>,  load average: 0.00, 0.01, 0.04</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>平均1分钟、5分钟、15分钟的负载值</li>
-</ul>
+<p>平均1分钟、5分钟、15分钟的负载值</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]# top  </span><br><span class="line">top - 15:00:51 up  3:59,  3 users,  load average: 0.00, 0.01, 0.04   </span><br></pre></td></tr></table></figure>
 
 <h4 id="查看CPU的使用率"><a href="#查看CPU的使用率" class="headerlink" title="查看CPU的使用率"></a>查看CPU的使用率</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># top</span></span><br><span class="line">%Cpu0  :  0.3 us,  0.0 sy,  0.0 ni, 99.7 <span class="built_in">id</span>,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">%Cpu1  :  0.0 us,  0.3 sy,  0.0 ni, 99.7 <span class="built_in">id</span>,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">%Cpu2  :  0.0 us,  0.0 sy,  0.0 ni,100.0 <span class="built_in">id</span>,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">%Cpu3  :  0.0 us,  0.0 sy,  0.0 ni,100.0 <span class="built_in">id</span>,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>数字1 显示每个CPU的使用率</p>
-</li>
-<li><p>us</p>
-</li>
-<li><ul>
-<li>用户进程占用的CPU百分比</li>
-</ul>
-</li>
-<li><p>sy</p>
-</li>
-<li><ul>
-<li>系统进程占用的CPU百分比</li>
-</ul>
-</li>
-<li><p>id</p>
-</li>
-<li><ul>
-<li>空闲CPU</li>
-</ul>
-</li>
-</ul>
+<p>数字1 显示每个CPU的使用率</p>
+<p>us</p>
+<p>​        用户进程占用的CPU百分比</p>
+<p>sy</p>
+<p>​        系统进程占用的CPU百分比</p>
+<p>id</p>
+<p>​        空闲CPU</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># mpstat 1 3</span></span><br><span class="line">Linux 3.10.0-957.el7.x86_64 (hosta) 	01/04/2022 	_x86_64_	(4 CPU)</span><br><span class="line"></span><br><span class="line">03:38:14 PM  CPU    %usr   %<span class="built_in">nice</span>    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle</span><br><span class="line">03:38:15 PM  all    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00</span><br><span class="line">03:38:16 PM  all    0.00    0.00    0.25    0.00    0.00    0.00    0.00    0.00    0.00   99.75</span><br><span class="line">03:38:17 PM  all    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00</span><br><span class="line">Average:     all    0.00    0.00    0.08    0.00    0.00    0.00    0.00    0.00    0.00   99.92</span><br></pre></td></tr></table></figure>
 
 <h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># top</span></span><br><span class="line">KiB Mem :  4026384 total,  3704136 free,   126636 used,   195612 buff/cache</span><br><span class="line">KiB Swap:  2097148 total,  2097148 free,        0 used.  3659052 avail Mem </span><br></pre></td></tr></table></figure>
@@ -680,138 +658,55 @@
 
 <h3 id="硬盘IO"><a href="#硬盘IO" class="headerlink" title="硬盘IO"></a>硬盘IO</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># iostat 1 3</span></span><br><span class="line">Linux 3.10.0-957.el7.x86_64 (hosta) 	01/04/2022 	_x86_64_	(4 CPU)</span><br><span class="line"></span><br><span class="line">avg-cpu:  %user   %<span class="built_in">nice</span> %system %iowait  %steal   %idle</span><br><span class="line">           0.01    0.00    0.16    0.03    0.00   99.80</span><br><span class="line"></span><br><span class="line">Device:            tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn</span><br><span class="line">sda               2.52         9.58      1046.38     150181   16402101</span><br><span class="line">scd0              0.00         0.07         0.00       1028          0</span><br><span class="line">dm-0              2.49         8.79      1046.25     137726   16400053</span><br><span class="line">dm-1              0.01         0.16         0.00       2460          0</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>kB_read&#x2F;s</p>
-</li>
-<li><ul>
-<li>每秒读取的字节数</li>
-</ul>
-</li>
-<li><p>KB_wrtn&#x2F;s</p>
-</li>
-<li><ul>
-<li>每秒写入的字节数</li>
-</ul>
-</li>
-</ul>
+<p>kB_read&#x2F;s</p>
+<p>​        每秒读取的字节数</p>
+<p>KB_wrtn&#x2F;s</p>
+<p>​        每秒写入的字节数 </p>
 <h3 id="网卡"><a href="#网卡" class="headerlink" title="网卡"></a>网卡</h3><h4 id="查看网卡的宽带"><a href="#查看网卡的宽带" class="headerlink" title="查看网卡的宽带"></a>查看网卡的宽带</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]# ethtool ens33 | grep -i &quot;speed&quot;</span><br><span class="line">	Speed: 1000Mb/s</span><br></pre></td></tr></table></figure>
 
 <h4 id="查看网卡IO"><a href="#查看网卡IO" class="headerlink" title="查看网卡IO"></a>查看网卡IO</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># sar -n DEV </span></span><br><span class="line">Linux 3.10.0-957.el7.x86_64 (hosta) 	01/04/2022 	_x86_64_	(4 CPU)</span><br><span class="line"></span><br><span class="line">09:04:16 AM       LINUX RESTART</span><br><span class="line"></span><br><span class="line">09:10:01 AM     IFACE   rxpck/s   txpck/s    rxkB/s    txkB/s   rxcmp/s   txcmp/s  rxmcst/s</span><br><span class="line">09:20:01 AM        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00</span><br><span class="line">09:20:01 AM     ens33      0.85      0.57      0.07      0.07      0.00      0.00      0.00</span><br><span class="line">09:30:01 AM        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00</span><br><span class="line">09:30:01 AM     ens33      1.80      1.08      0.15      0.13      0.00      0.00      0.00</span><br><span class="line">09:40:01 AM        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00</span><br><span class="line">09:40:01 AM     ens33      0.94      0.58      0.08      0.09      0.00      0.00      0.00</span><br><span class="line">09:50:01 AM        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00</span><br><span class="line">09:50:01 AM     ens33      0.24      0.19      0.02      0.02      0.00      0.00      0.00</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li><p>rxpck&#x2F;s   </p>
-</li>
-<li><ul>
-<li>每秒接收的数据包个数</li>
-</ul>
-</li>
-<li><p>txpck&#x2F;s    </p>
-</li>
-<li><ul>
-<li>每秒发送的数据包个数</li>
-</ul>
-</li>
-<li><p>rxkB&#x2F;s    </p>
-</li>
-<li><ul>
-<li>每秒接收的数据量，单位KB</li>
-</ul>
-</li>
-<li><p>txkB&#x2F;s</p>
-</li>
-<li><ul>
-<li>每秒发送的数据量，单位KB</li>
-</ul>
-</li>
-</ul>
+<p>rxpck&#x2F;s   </p>
+<p>​        每秒接收的数据包个数</p>
+<p>txpck&#x2F;s    </p>
+<p>​        每秒发送的数据包个数</p>
+<p>rxkB&#x2F;s    </p>
+<p>​        每秒接收的数据量，单位KB</p>
+<p>txkB&#x2F;s</p>
+<p>​        每秒发送的数据量，单位KB </p>
 <h2 id="RAID"><a href="#RAID" class="headerlink" title="RAID"></a>RAID</h2><p><strong>1、核心关注点</strong></p>
-<ul>
-<li>加快数据读写速度</li>
-<li>加强数据可靠性</li>
-</ul>
+<p>加快数据读写速度</p>
+<p>加强数据可靠性</p>
 <p><strong>2、RAID 0     条带</strong></p>
-<ul>
-<li><p>优势</p>
-</li>
-<li><ul>
-<li>加快数据读写速度</li>
-</ul>
-</li>
-<li><p>劣势</p>
-</li>
-<li><ul>
-<li>无数据冗余</li>
-</ul>
-</li>
-<li><p>至少2块硬盘</p>
-</li>
-</ul>
+<p>优势</p>
+<p>​        加快数据读写速度 </p>
+<p>劣势</p>
+<p>​        无数据冗余 </p>
+<p>至少2块硬盘 </p>
 <p><strong>3、RAID 1     镜像</strong></p>
-<ul>
-<li><p>优势</p>
-</li>
-<li><ul>
-<li>增加数据可靠性</li>
-</ul>
-</li>
-<li><p>劣势</p>
-</li>
-<li><ul>
-<li>浪费1&#x2F;2的存储空间</li>
-</ul>
-</li>
-<li><p>至少2块硬盘</p>
-</li>
-</ul>
+<p>优势</p>
+<p>​        增加数据可靠性</p>
+<p>劣势</p>
+<p>​        浪费1&#x2F;2的存储空间</p>
+<p>至少2块硬盘</p>
 <p><strong>4、RAID 5</strong> </p>
-<ul>
-<li><p>优势</p>
-</li>
-<li><ul>
-<li>加快数据读写速度、增加可靠性</li>
-<li>存储数据、数据校验码</li>
-</ul>
-</li>
-<li><p>至少3块硬盘</p>
-</li>
-<li><p><strong>最多支持同时坏1块盘</strong></p>
-</li>
-<li><p>实际存储容量 n-1&#x2F;n</p>
-</li>
-</ul>
-<p>​    <img src="https://note.youdao.com/yws/public/resource/cbcf6e9212ee1e82f8c8f03eabc606e3/xmlnote/D857CCAD8BD7485090BD35EAD4FE4210/E11E7DAB516A426E9DF8E5A117CA61C2/251" class="lazyload placeholder" data-srcset="https://note.youdao.com/yws/public/resource/cbcf6e9212ee1e82f8c8f03eabc606e3/xmlnote/D857CCAD8BD7485090BD35EAD4FE4210/E11E7DAB516A426E9DF8E5A117CA61C2/251" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="0"></p>
+<p>优势</p>
+<p>​        加快数据读写速度、增加可靠性</p>
+<p>​        存储数据、数据校验码</p>
+<p>至少3块硬盘</p>
+<p>最多支持同时坏1块盘</p>
+<p>实际存储容量 n-1&#x2F;n</p>
 <p><strong>5、RAID 6</strong> </p>
-<ul>
-<li><p>优势</p>
-</li>
-<li><ul>
-<li>加快数据读写速度、增加可靠性</li>
-</ul>
-</li>
-<li><p>与RAID 5惟一的区别</p>
-</li>
-<li><ul>
-<li><strong>RAID 6同时支持块两块盘</strong></li>
-</ul>
-</li>
-</ul>
+<p>优势</p>
+<p>​        加快数据读写速度、增加可靠性</p>
+<p>与RAID 5惟一的区别</p>
+<p>RAID 6同时支持块两块盘</p>
 <p><strong>6、RAID 10</strong></p>
-<ul>
-<li><p>优势</p>
-</li>
-<li><ul>
-<li>加快数据读写速度、增加可靠性</li>
-</ul>
-</li>
-<li><p>劣势</p>
-</li>
-<li><ul>
-<li>浪费1&#x2F;2存储空间</li>
-</ul>
-</li>
-<li><p>至少4块盘</p>
-</li>
-</ul>
+<p>优势</p>
+<p>​        加快数据读写速度、增加可靠性</p>
+<p>劣势</p>
+<p>​          浪费1&#x2F;2存储空间</p>
+<p>至少4块盘</p>
 
       </div>
       <div class="post-tags-categories">
@@ -825,7 +720,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2022/03/08/基础知识及其概念/" target="_blank" title="">http://example.com/2022/03/08/基础知识及其概念/</a>
+    <a href="/2022/03/08/基础知识及其概念/" target="_blank" title="基础知识及其概念">http://example.com/2022/03/08/基础知识及其概念/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>

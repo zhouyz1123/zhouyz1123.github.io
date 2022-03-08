@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>zabbix介绍 | 周扬臻的个人博客</title>
+  <title>周扬臻的个人博客</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -525,14 +525,14 @@
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        zabbix介绍
+        
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> 发表于：2022-03-05 |
+          <i class="fas fa-calendar"></i> 发表于：2022-03-08 |
         </span>
       
 
@@ -556,37 +556,262 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h3 id="系统监控需求"><a href="#系统监控需求" class="headerlink" title="系统监控需求"></a>系统监控需求</h3><blockquote>
-<p>在互联网的应用中，我们大量的使用网络和服务器来完成项目平台的搭建，在系 统运维过程中，我们需要获取很多网络和服务器运行的信息，比如:网络流量、 主机CPU 使用率、主机内存使用率、主机磁盘使用率等。这些信息我们可以通 过网络或主机设备上的命令行指令获取，但这样很不方便，尤其是主机和设备非 常多的情况下获取这些信息。想象一下我们管理的是由1000 多台物理服务器和 50 多台网络交换或路由设备组成的一个私有云，如果我们需要人工的获取这些 服务器和设备的运行状态、网络流量和服务状态是非常耗时且无法完成的。更不 要说在这1000 多台物理服务器上运行着3000 或更多的虚拟服务器，每个服务器 上又运行着相互关联的负责均衡集群、分布式计算集群、分布式存储集群、高性 能计算集群等复杂的应用集群方案。我们必须实时的获取它们的运行状态，并且 分析在过去1 小时、24 小时、1 周、1 月、1 年的数据变化趋势。我们需要获取 和保持这些数据并且在需要的时候能够方便的展示出它们的可视化视图。 不仅仅是获取实时的运行数据，我们还需要有一套完整的报警机制。在服务器、 网络设备、资源服务、业务逻辑等出现异常的时候可以通过WEB、邮件、短信、 电话等方式自动化的通知管理人员。这种报警机制必须是可配置的，可以根据我 们系统应用的具体情况做出合理的方案，比如设置CPU 使用阀值、报告内存突 然的增⻓、服务器流量异常、应用服务负载异常、集群服务故障迁移等等情况。 随着项目的的推进，我们还需要通过分析记录数据预估出未来可能需要的资源容 量，例如服务器数量是否需要增添及何时增添、网络带宽是否出现瓶颈及何时增 添、应用服务器是否需要平行宽展及何时扩展等等。这些都需要大量且⻓期的数 据分析支撑，也就是⻓期有效的系统监控数据支撑。</p>
-</blockquote>
-<h3 id="常见监控解决方案"><a href="#常见监控解决方案" class="headerlink" title="常见监控解决方案"></a>常见监控解决方案</h3><blockquote>
-<p>早期，网络环境中的设备数量尚且不多的时候，人们需要监控的仅仅是几台服务器、一些交换机以及少量的其他设备。首先就需要有方法将人们关心的各项数据 从设备中提取出来，然后再考虑如何集中化的展示出来。 为了满足提取各项数据的需求，互联网工程工作小组(IETF,Internet Engineering Task Force)定义并发布了简单网络管理协议(SNMP)。该协议 能够支持网络管理系统，用以监控连接到网络上的各种设备。Linux系统当然也 支持该协议。人们可以使用SNMP协议获取主机CPU、内存、磁盘、网卡流量等 数据，很多商业网络设备如路由器、交换机等基本也支持SNMP协议。</p>
-<p>最初，人们用脚本将获取到的SNMP数据存入数据库中，然后再使用一种名为 MRTG的软件根据获取的数据绘制图表来分析数据的变化。MRTG(Multi Router Traffic Grapher)，顾名思义，这款软件最初是设计用于监控网络链路流量负载 的。它可以用过SNMP获取到设备的流量信息，并根据这些信息绘制成图表并保 存为PNG格式的图片，再将这些PNG图片以HTML⻚面的方式显示给用户。</p>
-<p>不过，MRTG展示的⻚面和图表曲线相对简陋，它在一张图片中最多只能绘制两 个数据的变化曲线，并且由于是PNG格式的静态图片，所以无法针对某一时间进 行细化展示。为了解决这个问题，人们又开发了RRDTOOL工具。 RRDTOOL(Round Robin Database Tool)是一个强大的绘图引擎。RRDTOOL可 以使用自己的环状数据库(RRD)来记录绘图数据，也可以使用关系型数据库， 例如MySQL来纪录数据。利用RRDTOOL我们就可以将获取到的SNMP数据通过 RRDTOOL进行实时绘图，这么一来，想看什么时候的数据，只要调取那个时间 的监控数据，让RRDTOOL帮我们画一张图出来就可以直观又清晰的查看了。目 前，几乎所有的开源监控软件都在使用RRDTOOL作为图形绘制引擎。 不过，直接使用RRDTOOL绘图操作起来很麻烦。同时，现如今的数据中心动辄 成百上千的设备，一个个的去提取、绘制、监控显然是不现实的事情。况且，不 同的设备监控的对象和方法也不同。有些数据依靠SNMP也提取不到(例如MySQL查询缓存命中率)。我们迫切的需要一个可以支持多种不同的监控手 段，同时具有分类组织图形并且可以按照分类⻚面的方式展示这些图形的工具。 另外，考虑到企业组织结构越来越复杂，参与监控的人员往往属于不同的部⻔或 者工作组，不同的人也应该限定具有不同层级的监控浏览权限。除此之外，还有 很多各种各样杂七杂八的需求不一而足。所以，现如今的监控软件不可以再像 MRTG那样仅仅画张图就了事，还需要考虑更加丰富的功能。</p>
-<p>Cacti 是一套基于PHP、MySQL、SNMP 及RRDTool 开发的监测图形分析工具。 它提供了非常强大的数据和用户管理功能，可以指定每一个用户能查看树状结 构、主机以及任何一张图，还可以与轻量级目录服务(LDAP)结合进行用户验 证，同时也能自己编写模板，功能非常强大完善界面友好。可是随着设备的不断 增多，Cacti 的运行机制就不能满足我们的需求了。Cacti 是使用轮询的方式由主 服务器向设备发送数据请求来获取设备上状态数据信息的，如果设备不断增多， 这个轮询的过程就非常的耗时，轮询的结果就不能即时的反应设备的状态了。</p>
-<p>Cacti 监控关注的是对数据的展示，却不关注数据异常后的反馈。如果凌晨3 点 的时候设备的某个数据出现异常，除非监控人员在屏幕前发现这个异常变化，否 则是没有任何报警机制能够让我们道出现了异常。这个时候我们就需要一种可以 根据我们预设阀值报警的工具。自动化监控报警服务有很多，其中商业应用比较 昂贵且多以硬件为主，开源自动化监控报警服务中最著名的也是应用最广泛的是 Nagios。</p>
-<p>Nagios 是一款开源的免费网络监控报警服务，能有效监控Windows、Linux 和 Unix 的主机状态，交换机、路由器和防火墙等网络设置，打印机、网络投影、 网络摄像等设备。在系统或服务状态异常时发出邮件或短信报警第一时间通知运 维人员，在状态恢复后发出正常的邮件或短信通知。Nagios 有完善的插件功能，可以方便的根据应用服务扩展功能。Nagios 可以使用服务-代理(Server- Agent)方式获取主机信息，也可以使用SNMP 方式获取设备信息。使用服务器- 代理(Server-Agent)方式在每个主机上运行代理软件，主机上的代理软件主动 提交数据信息，可以避免服务器轮询带来的延迟和非实时性等问题。</p>
-<p>Nagios 已经可以支持由数万台服务器或上千台网络设备组成的云技术平台的监 控，它可以充分发挥自动化运维技术特点在设备和人力资源减少成本。只是 Nagios 无法将多个相同应用集群的数据集合起来，也不能监控到集群中特殊节 点的迁移和恢复。一个新的监控服务根据这个需求被设计出来，它就是 Ganglia。</p>
-<p>Ganglia 是UC Berkeley 发起的一个开源集群监视项目，设计用于测量数以千计 的节点。Ganglia 的核心包含gmond、gmetad 以及一个Web 前端。主要是用来 监控系统性能，如:CPU 、内存、硬盘利用率，I&#x2F;O 负载、网络流量情况等，通 过曲线很容易⻅到每个节点的工作状态，对合理调整、分配系统资源，提高系统 整体性能起到重要作用，目前是监控HADOOP 的官方推荐服务。</p>
-<p>Ganglia 分为服务器端、客户端和一个Web 前端，其中gmetad 是服务器端， gmond 是客户端。服务器端只有一个，而被监控服务器均安装客户端。Ganglia 采用Internet IPv4 类D 地址中的的组播进行数据请求。gmetad 发送一个请求到 一个组播地址，由于使用组播</p>
-<p>方式gmetad 只需发送一次请求包即可完成对所有gmond 的轮询。然后gmond 通过这个请求将采集到的数据返回给gmetad，gmetad 将数据保存在数据库中， 通过RRDTool 绘制图表，然后通过Web 界面展示分类的⻚面。</p>
-</blockquote>
-<h3 id="Zabbix是什么"><a href="#Zabbix是什么" class="headerlink" title="Zabbix是什么?"></a>Zabbix是什么?</h3><blockquote>
-<p>Zabbix是一个基于WEB界面的提供分布式系统监视以及网络监视功能的企业级 的开源解决方案。zabbix能监视各种网络参数，保证服务器系统的安全运营;并 提供灵活的通知机制以让系统管理员快速定位&#x2F;解决存在的各种问题。 Zabbix由2部分构成，zabbix server与可选组件zabbix agent。zabbix server可 以通过SNMP，zabbix agent，ping，端口监视等方法提供对远程服务器&#x2F;网络状 态的监视，数据收集等功能，它可以运行在Linux, Solaris, HP-UX, AIX, Free BSD, Open BSD, OS X等平台上。zabbix agent需要安装在被监视的目标服务器 上，它主要完成对硬件信息或与操作系统有关的内存，CPU等信息的收集。 zabbix agent可以运行在Linux,Solaris,HP-UX,AIX,Free BSD,Open BSD, OS X, Tru64&#x2F;OSF1, Windows NT4.0, Windows (2000&#x2F;2003&#x2F;XP&#x2F;Vista)等系统之上。 zabbix server可以单独监视远程服务器的服务状态;同时也可以与zabbix agent 配合，可以轮询zabbix agent主动接收监视数据(agent方式)，同时还可被动接收zabbix agent发送的数据(trapping方式)。另外zabbix server还支持 SNMP (v1,v2)，可以与SNMP软件(例如:net-snmp)等配合使用。 相比较Cacti，Zabbix具有不亚于Cacti的图形表现效果，同时还支持监控报警功 能。并且内置的监控模板比Cacti要丰富的多得多。 相比较Nagios，Zabbix安装配置要简单的多，利于实现。同时学习成本也要低 得多。在监控性能方面也不亚于Nagios。 因此，目前越来越多的公司开始使用Zabbix作为监控的最佳解决方案。</p>
-</blockquote>
-<h3 id="Zabbix的优缺点"><a href="#Zabbix的优缺点" class="headerlink" title="Zabbix的优缺点"></a>Zabbix的优缺点</h3><blockquote>
+        <h1 id="基础知识及其概念"><a href="#基础知识及其概念" class="headerlink" title="基础知识及其概念"></a>基础知识及其概念</h1><h2 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h2><p>应用层、表示层、会话层、传输层、网络层、数据链路层、物理层</p>
+<h2 id="典型协议"><a href="#典型协议" class="headerlink" title="典型协议"></a>典型协议</h2><h4 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h4><p>HTTP,HTTPS:    提供网站服务</p>
+<p>FTP:    实现文件共享、传输</p>
+<p>SMTP:    发送邮件</p>
+<p>POP3:    接收邮件</p>
+<p>IMAP4:    支持附件功能</p>
+<p>SSH:    实现Linux主机加密、远程连接 </p>
+<p>DHCP:    动态主机配置协议</p>
+<p>FTP:    文件传输协议</p>
+<p>NFS:    网络文件系统</p>
+<p>DNS：域名系统</p>
+<h4 id="传输层协议"><a href="#传输层协议" class="headerlink" title="传输层协议"></a>传输层协议</h4><p>TCP:传输控制协议</p>
+<p>UDP:用户数据报协议</p>
+<h4 id="网络层协议"><a href="#网络层协议" class="headerlink" title="网络层协议"></a>网络层协议</h4><p>IP:网际互连协议</p>
+<p>ICMP:检测网络通信(ping)</p>
+<p>ARP:根据IP地址解析MAC地址</p>
+<h2 id="常见服务端口"><a href="#常见服务端口" class="headerlink" title="常见服务端口"></a>常见服务端口</h2><p>20:    FTP数据端口</p>
+<p>21:    FTP服务器开放端口,用于上传下载</p>
+<p>22:    ssh安全外壳协议</p>
+<p>23:    telnet远程终端协议</p>
+<p>25:    SMTP（简单邮件传输协议）</p>
+<p>53:    DNS（域名系统）</p>
+<p>67:    DHCP 端口发放IP</p>
+<p>68:    DHCP 发送超过和失败回应</p>
+<p>80:    HTTP超文本传输协议</p>
+<p>123:    NTP网络时间协议</p>
+<p>443:    HTTPS超文本传输安全协议</p>
+<p>873:    rsync文件传输服务</p>
+<p>3306:    MySQL数据库</p>
+<p>9000:    php-fpm</p>
+<h2 id="进程查看及其调度"><a href="#进程查看及其调度" class="headerlink" title="进程查看及其调度"></a>进程查看及其调度</h2><p>进程是资源分配的最小单位</p>
+<p>线程是CPU调度的最小单位</p>
+<h3 id="进程查看"><a href="#进程查看" class="headerlink" title="进程查看"></a>进程查看</h3><h4 id="查看当前终端的进程"><a href="#查看当前终端的进程" class="headerlink" title="查看当前终端的进程"></a><strong>查看当前终端的进程</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># ps</span></span><br><span class="line">    PID TTY          TIME CMD</span><br><span class="line">   6841 pts/0    00:00:00 bash</span><br><span class="line">   7141 pts/0    00:00:00 ps</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li><p>优点:</p>
-<ul>
-<li>开源，无软件成本投入</li>
-<li>Server 对设备性能要求低<br>支持设备多，自带多种监控模板 支持分布式集中管理，有自动发现功能，可以实现自动化监控 开放式接口，扩展性强，插件编写容易<br>当监控的item 比较多服务器队列比较大时可以采用被动状态，被监控客户端主 动从server 端去下载需要监控的item 然后取数据上传到server 端。这种方式对服务 器的负载比较小。</li>
-<li>Api 的支持，方便与其他系统结合</li>
+<li><p>CMD</p>
+</li>
+<li><ul>
+<li>进程名称</li>
 </ul>
 </li>
-<li><p>缺点: 需在被监控主机上安装agent，所有数据都存在数据库里，产生的数据据很大，瓶颈主要在数据库。</p>
+<li><p>PID</p>
+</li>
+<li><ul>
+<li>进程ID</li>
+</ul>
 </li>
 </ul>
-</blockquote>
+<h4 id="查看所有进程"><a href="#查看所有进程" class="headerlink" title="查看所有进程"></a><strong>查看所有进程</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># ps aux | less </span></span><br><span class="line">USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span><br><span class="line">root           1  0.0  0.3 190976  3828 ?        Ss   09:04   0:01 /usr/lib/systemd/systemd --switched-root --system --deserialize 22</span><br><span class="line">root           2  0.0  0.0      0     0 ?        S    09:04   0:00 [kthreadd]</span><br><span class="line">root           3  0.0  0.0      0     0 ?        S    09:04   0:00 [ksoftirqd/0]</span><br><span class="line">root           5  0.0  0.0      0     0 ?        S&lt;   09:04   0:00 [kworker/0:0H]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>RSS    物理内存集</p>
+</li>
+<li><ul>
+<li>进程所消耗物理内存大小</li>
+</ul>
+</li>
+<li><p>VSZ    虚拟内存集</p>
+</li>
+<li><ul>
+<li><p>物理内存 + 共享内存 + swap(可能)</p>
+</li>
+<li><p>共享内存</p>
+</li>
+<li><ul>
+<li>实现进程间通信</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>&#96;&#96;&#96;bash<br>[root@hosta ~]# ps -elf<br>F S UID          PID    PPID  C PRI  NI ADDR SZ WCHAN  STIME TTY          TIME CMD<br>4 S root           1       0  0  80   0 - 31360 ep_pol 11:01 ?        00:00:01 &#x2F;usr&#x2F;lib&#x2F;systemd&#x2F;systemd –switched-root –system –deserialize 22<br>1 S root           2       0  0  80   0 -     0 kthrea 11:01 ?        00:00:00 [kthreadd]<br>1 S root           3       2  0  80   0 -     0 smpboo 11:01 ?        00:00:00 [ksoftirqd&#x2F;0]<br>1 S root           5       2  0  60 -20 -     0 worker 11:01 ?        00:00:00 [kworker&#x2F;0:0H]<br>1 S root           6       2  0  80   0 -     0 worker 11:01 ?        00:00:00 [kworker&#x2F;u256:0]<br>1 S root           7       2  0 -40   - -     0 smpboo 11:01 ?        00:00:00 [migration&#x2F;0]<br>1 S root           8       2  0  80   0 -     0 rcu_gp 11:01 ?        00:00:00 [rcu_bh]</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- - PPID	</span><br><span class="line"></span><br><span class="line">  - - 父进程ID</span><br><span class="line"></span><br><span class="line">#### **查看内存容量** </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>[root@hosta ~]# free -m<br>        total        used        free      shared  buff&#x2F;cache   available<br>Mem:           3932         111        3686          11         133        3614<br>Swap:          2047           0        2047</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">####  进程状态</span><br><span class="line"></span><br><span class="line">- CPU按时间切片调度执行多个任务/进程 </span><br><span class="line"></span><br><span class="line">- R  </span><br><span class="line"></span><br><span class="line">- - 运行状态 </span><br><span class="line"></span><br><span class="line">- S</span><br><span class="line"></span><br><span class="line">- - 可中断的睡眠状态  </span><br><span class="line"></span><br><span class="line">- D</span><br><span class="line"></span><br><span class="line">- - 不可中断的睡眠状态 </span><br><span class="line"></span><br><span class="line">- T </span><br><span class="line"></span><br><span class="line">- - 终止状态 </span><br><span class="line"></span><br><span class="line">- Z	</span><br><span class="line"></span><br><span class="line">- - 僵尸进程</span><br><span class="line">  - 当进程被销毁时，父进程没有办法回收内存资源</span><br><span class="line"></span><br><span class="line">###### 孤儿进程/僵尸进程</span><br><span class="line"></span><br><span class="line">1、孤儿进程：子进程执行完毕时发现父进程已退出，子进程变成为了孤儿进程。孤儿进程后期会被系统的 init 进程接管，并 wait/waitpid 其执行状态做回收处理。对系统并无危害。</span><br><span class="line"></span><br><span class="line">2、僵尸进程：子进程执行完毕时发现父进程未退出，会向父进程发送 SIGCHLD 信号。但父进程没有使用 wait/waitpid 或其他方式处理 SIGCHLD 信号来回收子进程，子进程变成为了对系统有害的僵尸进程。</span><br><span class="line"></span><br><span class="line">僵尸进程无法被系统有效的回收，ps 查看时状态为 Z 的即为僵尸进程，或 top 命令可直接看到 zombie 的个数。僵尸进程的父进程此时一定仍在运行，产生僵尸进程的元凶其实是他们的父进程，杀掉父进程，僵尸进程就变为了孤儿进程，便可以转交给 init 进程回收处理。</span><br><span class="line"></span><br><span class="line">###### **查看CPU的个数**</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">[root@hosta ~]# nproc </span><br><span class="line">4</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# lscpu</span><br><span class="line">Architecture:          x86_64</span><br><span class="line">CPU op-mode(s):        32-bit, 64-bit</span><br><span class="line">Byte Order:            Little Endian</span><br><span class="line">CPU(s):                2</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h6 id="查看进程树"><a href="#查看进程树" class="headerlink" title="查看进程树"></a>查看进程树</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># pstree </span></span><br><span class="line">systemd─┬─NetworkManager───2*[&#123;NetworkManager&#125;]</span><br><span class="line">        ├─VGAuthService</span><br><span class="line">        ├─agetty</span><br><span class="line">        ├─auditd───&#123;auditd&#125;</span><br><span class="line">        ├─crond</span><br><span class="line">        ├─dbus-daemon</span><br><span class="line">        ├─irqbalance</span><br></pre></td></tr></table></figure>
+
+<h6 id="获取进程ID"><a href="#获取进程ID" class="headerlink" title="获取进程ID"></a>获取进程ID</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># pidof vim</span></span><br><span class="line">9580</span><br><span class="line">[root@hosta ~]<span class="comment"># pgrep vim</span></span><br><span class="line">9580</span><br></pre></td></tr></table></figure>
+
+<h2 id="动态查看进程"><a href="#动态查看进程" class="headerlink" title="动态查看进程"></a>动态查看进程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]# top </span><br><span class="line">    PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND                                                                               </span><br><span class="line">      1 root      20   0  125440   3852   2588 S   0.0  0.1   0:02.03 systemd                                                                               </span><br><span class="line">      2 root      20   0       0      0      0 S   0.0  0.0   0:00.01 kthreadd                                                                              </span><br><span class="line">      3 root      20   0       0      0      0 S   0.0  0.0   0:00.03 ksoftirqd/0                                                                           </span><br><span class="line">      5 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:0H                                                                          </span><br><span class="line">      6 root      20   0       0      0      0 S   0.0  0.0   0:00.09 kworker/u256:0                                                                        </span><br><span class="line">      7 root      rt   0       0      0      0 S   0.0  0.0   0:00.02 migration/0                                                                           </span><br><span class="line">      8 root      20   0       0      0      0 S   0.0  0.0   0:00.00 rcu_bh                                                                                </span><br><span class="line">      9 root      20   0       0      0      0 S   0.0  0.0   0:00.87 rcu_sched                                                                             </span><br><span class="line">     10 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 lru-add-drain                                                                         </span><br><span class="line">     11 root      rt   0       0      0      0 S   0.0  0.0   0:00.06 watchdog/0                                                                            </span><br><span class="line">     12 root      rt   0       0      0      0 S   0.0  0.0   0:00.06 watchdog/1                                                                            </span><br><span class="line">     13 root      rt   0       0      0      0 S   0.0  0.0   0:00.02 migration/1                                                                           </span><br><span class="line">     14 root      20   0       0      0      0 S   0.0  0.0   0:00.03 ksoftirqd/1   </span><br></pre></td></tr></table></figure>
+
+<h2 id="查看主机性能状态"><a href="#查看主机性能状态" class="headerlink" title="查看主机性能状态"></a>查看主机性能状态</h2><h3 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h3><h4 id="查看CPU的平均负载"><a href="#查看CPU的平均负载" class="headerlink" title="查看CPU的平均负载"></a><strong>查看CPU的平均负载</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># uptime </span></span><br><span class="line"> 14:59:17 up  3:58,  3 <span class="built_in">users</span>,  load average: 0.00, 0.01, 0.04</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>平均1分钟、5分钟、15分钟的负载值</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]# top  </span><br><span class="line">top - 15:00:51 up  3:59,  3 users,  load average: 0.00, 0.01, 0.04   </span><br></pre></td></tr></table></figure>
+
+<h4 id="查看CPU的使用率"><a href="#查看CPU的使用率" class="headerlink" title="查看CPU的使用率"></a>查看CPU的使用率</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># top</span></span><br><span class="line">%Cpu0  :  0.3 us,  0.0 sy,  0.0 ni, 99.7 <span class="built_in">id</span>,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">%Cpu1  :  0.0 us,  0.3 sy,  0.0 ni, 99.7 <span class="built_in">id</span>,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">%Cpu2  :  0.0 us,  0.0 sy,  0.0 ni,100.0 <span class="built_in">id</span>,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br><span class="line">%Cpu3  :  0.0 us,  0.0 sy,  0.0 ni,100.0 <span class="built_in">id</span>,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>数字1 显示每个CPU的使用率</p>
+</li>
+<li><p>us</p>
+</li>
+<li><ul>
+<li>用户进程占用的CPU百分比</li>
+</ul>
+</li>
+<li><p>sy</p>
+</li>
+<li><ul>
+<li>系统进程占用的CPU百分比</li>
+</ul>
+</li>
+<li><p>id</p>
+</li>
+<li><ul>
+<li>空闲CPU</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># mpstat 1 3</span></span><br><span class="line">Linux 3.10.0-957.el7.x86_64 (hosta) 	01/04/2022 	_x86_64_	(4 CPU)</span><br><span class="line"></span><br><span class="line">03:38:14 PM  CPU    %usr   %<span class="built_in">nice</span>    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle</span><br><span class="line">03:38:15 PM  all    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00</span><br><span class="line">03:38:16 PM  all    0.00    0.00    0.25    0.00    0.00    0.00    0.00    0.00    0.00   99.75</span><br><span class="line">03:38:17 PM  all    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00  100.00</span><br><span class="line">Average:     all    0.00    0.00    0.08    0.00    0.00    0.00    0.00    0.00    0.00   99.92</span><br></pre></td></tr></table></figure>
+
+<h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># top</span></span><br><span class="line">KiB Mem :  4026384 total,  3704136 free,   126636 used,   195612 buff/cache</span><br><span class="line">KiB Swap:  2097148 total,  2097148 free,        0 used.  3659052 avail Mem </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]# free -m</span><br><span class="line">              total        used        free      shared  buff/cache   available</span><br><span class="line">Mem:           3932         123        3617          11         191        3573</span><br><span class="line">Swap:          2047           0        2047</span><br></pre></td></tr></table></figure>
+
+<h4 id="动态查看内存的使用率"><a href="#动态查看内存的使用率" class="headerlink" title="动态查看内存的使用率"></a><strong>动态查看内存的使用率</strong></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># vmstat 1 </span></span><br><span class="line">procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----</span><br><span class="line"> r  b   swpd   free   buff  cache   si   so    bi    bo   <span class="keyword">in</span>   cs us sy <span class="built_in">id</span> wa st</span><br><span class="line"> 1  0      0 144936    164 3759652    0    0     2   245   11   15  0  0 100  0  0</span><br><span class="line"> 0  0      0 144904    164 3759652    0    0     0     0   52   61  0  0 100  0  0</span><br><span class="line"> 0  0      0 144912    164 3759652    0    0     0     0   51   69  0  0 100  0  0</span><br><span class="line"> 0  0      0 144912    164 3759652    0    0     0     0   56   60  0  0 100  0  0</span><br><span class="line"> 1  0      0 144912    164 3759652    0    0     0     0   32   47  0  0 100  0  0</span><br></pre></td></tr></table></figure>
+
+<h3 id="硬盘"><a href="#硬盘" class="headerlink" title="硬盘"></a>硬盘</h3><h4 id="查看硬盘容量"><a href="#查看硬盘容量" class="headerlink" title="查看硬盘容量"></a>查看硬盘容量</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># df -hT</span></span><br><span class="line">Filesystem              Type      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/mapper/centos-root xfs        18G  1.9G   16G  11% /</span><br><span class="line">devtmpfs                devtmpfs  2.0G     0  2.0G   0% /dev</span><br><span class="line">tmpfs                   tmpfs     2.0G     0  2.0G   0% /dev/shm</span><br><span class="line">tmpfs                   tmpfs     2.0G   12M  2.0G   1% /run</span><br></pre></td></tr></table></figure>
+
+<h3 id="硬盘IO"><a href="#硬盘IO" class="headerlink" title="硬盘IO"></a>硬盘IO</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># iostat 1 3</span></span><br><span class="line">Linux 3.10.0-957.el7.x86_64 (hosta) 	01/04/2022 	_x86_64_	(4 CPU)</span><br><span class="line"></span><br><span class="line">avg-cpu:  %user   %<span class="built_in">nice</span> %system %iowait  %steal   %idle</span><br><span class="line">           0.01    0.00    0.16    0.03    0.00   99.80</span><br><span class="line"></span><br><span class="line">Device:            tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn</span><br><span class="line">sda               2.52         9.58      1046.38     150181   16402101</span><br><span class="line">scd0              0.00         0.07         0.00       1028          0</span><br><span class="line">dm-0              2.49         8.79      1046.25     137726   16400053</span><br><span class="line">dm-1              0.01         0.16         0.00       2460          0</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>kB_read&#x2F;s</p>
+</li>
+<li><ul>
+<li>每秒读取的字节数</li>
+</ul>
+</li>
+<li><p>KB_wrtn&#x2F;s</p>
+</li>
+<li><ul>
+<li>每秒写入的字节数</li>
+</ul>
+</li>
+</ul>
+<h3 id="网卡"><a href="#网卡" class="headerlink" title="网卡"></a>网卡</h3><h4 id="查看网卡的宽带"><a href="#查看网卡的宽带" class="headerlink" title="查看网卡的宽带"></a>查看网卡的宽带</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]# ethtool ens33 | grep -i &quot;speed&quot;</span><br><span class="line">	Speed: 1000Mb/s</span><br></pre></td></tr></table></figure>
+
+<h4 id="查看网卡IO"><a href="#查看网卡IO" class="headerlink" title="查看网卡IO"></a>查看网卡IO</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@hosta ~]<span class="comment"># sar -n DEV </span></span><br><span class="line">Linux 3.10.0-957.el7.x86_64 (hosta) 	01/04/2022 	_x86_64_	(4 CPU)</span><br><span class="line"></span><br><span class="line">09:04:16 AM       LINUX RESTART</span><br><span class="line"></span><br><span class="line">09:10:01 AM     IFACE   rxpck/s   txpck/s    rxkB/s    txkB/s   rxcmp/s   txcmp/s  rxmcst/s</span><br><span class="line">09:20:01 AM        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00</span><br><span class="line">09:20:01 AM     ens33      0.85      0.57      0.07      0.07      0.00      0.00      0.00</span><br><span class="line">09:30:01 AM        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00</span><br><span class="line">09:30:01 AM     ens33      1.80      1.08      0.15      0.13      0.00      0.00      0.00</span><br><span class="line">09:40:01 AM        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00</span><br><span class="line">09:40:01 AM     ens33      0.94      0.58      0.08      0.09      0.00      0.00      0.00</span><br><span class="line">09:50:01 AM        lo      0.00      0.00      0.00      0.00      0.00      0.00      0.00</span><br><span class="line">09:50:01 AM     ens33      0.24      0.19      0.02      0.02      0.00      0.00      0.00</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>rxpck&#x2F;s   </p>
+</li>
+<li><ul>
+<li>每秒接收的数据包个数</li>
+</ul>
+</li>
+<li><p>txpck&#x2F;s    </p>
+</li>
+<li><ul>
+<li>每秒发送的数据包个数</li>
+</ul>
+</li>
+<li><p>rxkB&#x2F;s    </p>
+</li>
+<li><ul>
+<li>每秒接收的数据量，单位KB</li>
+</ul>
+</li>
+<li><p>txkB&#x2F;s</p>
+</li>
+<li><ul>
+<li>每秒发送的数据量，单位KB</li>
+</ul>
+</li>
+</ul>
+<h2 id="RAID"><a href="#RAID" class="headerlink" title="RAID"></a>RAID</h2><p><strong>1、核心关注点</strong></p>
+<ul>
+<li>加快数据读写速度</li>
+<li>加强数据可靠性</li>
+</ul>
+<p><strong>2、RAID 0     条带</strong></p>
+<ul>
+<li><p>优势</p>
+</li>
+<li><ul>
+<li>加快数据读写速度</li>
+</ul>
+</li>
+<li><p>劣势</p>
+</li>
+<li><ul>
+<li>无数据冗余</li>
+</ul>
+</li>
+<li><p>至少2块硬盘</p>
+</li>
+</ul>
+<p><strong>3、RAID 1     镜像</strong></p>
+<ul>
+<li><p>优势</p>
+</li>
+<li><ul>
+<li>增加数据可靠性</li>
+</ul>
+</li>
+<li><p>劣势</p>
+</li>
+<li><ul>
+<li>浪费1&#x2F;2的存储空间</li>
+</ul>
+</li>
+<li><p>至少2块硬盘</p>
+</li>
+</ul>
+<p><strong>4、RAID 5</strong> </p>
+<ul>
+<li><p>优势</p>
+</li>
+<li><ul>
+<li>加快数据读写速度、增加可靠性</li>
+<li>存储数据、数据校验码</li>
+</ul>
+</li>
+<li><p>至少3块硬盘</p>
+</li>
+<li><p><strong>最多支持同时坏1块盘</strong></p>
+</li>
+<li><p>实际存储容量 n-1&#x2F;n</p>
+</li>
+</ul>
+<p>​    <img src="https://note.youdao.com/yws/public/resource/cbcf6e9212ee1e82f8c8f03eabc606e3/xmlnote/D857CCAD8BD7485090BD35EAD4FE4210/E11E7DAB516A426E9DF8E5A117CA61C2/251" class="lazyload placeholder" data-srcset="https://note.youdao.com/yws/public/resource/cbcf6e9212ee1e82f8c8f03eabc606e3/xmlnote/D857CCAD8BD7485090BD35EAD4FE4210/E11E7DAB516A426E9DF8E5A117CA61C2/251" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="0"></p>
+<p><strong>5、RAID 6</strong> </p>
+<ul>
+<li><p>优势</p>
+</li>
+<li><ul>
+<li>加快数据读写速度、增加可靠性</li>
+</ul>
+</li>
+<li><p>与RAID 5惟一的区别</p>
+</li>
+<li><ul>
+<li><strong>RAID 6同时支持块两块盘</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>6、RAID 10</strong></p>
+<ul>
+<li><p>优势</p>
+</li>
+<li><ul>
+<li>加快数据读写速度、增加可靠性</li>
+</ul>
+</li>
+<li><p>劣势</p>
+</li>
+<li><ul>
+<li>浪费1&#x2F;2存储空间</li>
+</ul>
+</li>
+<li><p>至少4块盘</p>
+</li>
+</ul>
 
       </div>
       <div class="post-tags-categories">
@@ -600,7 +825,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2022/03/05/zabbix介绍/" target="_blank" title="zabbix介绍">http://example.com/2022/03/05/zabbix介绍/</a>
+    <a href="/2022/03/08/基础知识及其概念/" target="_blank" title="">http://example.com/2022/03/08/基础知识及其概念/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -618,40 +843,22 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/1.jpg" class="lazyload placeholder" data-srcset="/medias/1.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-    </div>
-    <a href="/2022/03/08/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%8F%8A%E5%85%B6%E6%A6%82%E5%BF%B5/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> 上一篇:
-        <div class="title-text"></div>
-      </div>
-      
-      <!-- <div class="content">
-        基础知识及其概念OSI七层模型应用层、表示层、会话层、传输层、网络层、数据链路层、物理层
-典型协议应用层协议HTTP,H
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/7.jpg" class="lazyload placeholder" data-srcset="/medias/7.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/1.jpg" class="lazyload placeholder" data-srcset="/medias/1.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
     </div>
-    <a href="/2022/03/05/hello-world/" class="post-nav-link">
+    <a href="/2022/03/05/zabbix%E4%BB%8B%E7%BB%8D/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fas fa-angle-right"></i>
-        <div class="title-text">Hello World</div>
+        <div class="title-text">zabbix介绍</div>
       </div>
       <!-- <div class="content">
-        Welcome to Hexo! This is your very first post. Check documen
+        系统监控需求
+在互联网的应用中，我们大量的使用网络和服务器来完成项目平台的搭建，在系 统运维过程中，我们需要获取很多网络
       </div> -->
     </a>
   </div>

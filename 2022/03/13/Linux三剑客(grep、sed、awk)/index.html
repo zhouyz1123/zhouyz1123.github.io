@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>MySQL | 周扬臻的个人博客</title>
+  <title>Linux三剑客(grep、sed、awk) | 周扬臻的个人博客</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -518,21 +518,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/medias/4.jpg')">
+  background-position: center center;position: relative;background-image:url('/medias/9.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        MySQL
+        Linux三剑客(grep、sed、awk)
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> 发表于：2022-03-12 |
+          <i class="fas fa-calendar"></i> 发表于：2022-03-13 |
         </span>
       
 
@@ -556,55 +556,179 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="什么是MySQL-MySQL有什么优点"><a href="#什么是MySQL-MySQL有什么优点" class="headerlink" title="什么是MySQL? MySQL有什么优点?"></a>什么是MySQL? MySQL有什么优点?</h2><p>MySQL是一个关系型数据库管理系统</p>
-<p>简单明了 开源 可扩展且快速 兼容多个平台 高度安全</p>
-<p>客户端&#x2F;服务器架构 ODBC支持 SQL查询和命令 复写 事务 外键约束 数据字典</p>
-<h2 id="什么是关系型数据库？"><a href="#什么是关系型数据库？" class="headerlink" title="什么是关系型数据库？"></a>什么是关系型数据库？</h2><p>所谓的关系型数据库，是建立在关系模型基础上的数据库，借助于集合代数等数学概念和方法来处理数据库中的数据</p>
-<h2 id="MySQL相关文件"><a href="#MySQL相关文件" class="headerlink" title="MySQL相关文件"></a>MySQL相关文件</h2><p>错误日志<br>&#x2F;var&#x2F;log&#x2F;mysqld.log</p>
-<p>默认数据目录<br>&#x2F;var&#x2F;lib&#x2F;mysql</p>
-<p>配置文件<br>&#x2F;etc&#x2F;my.cnf</p>
-<p>datadir        数据目录</p>
-<p>socket        套接字文件socket<br>保存mysql监听的IP和端口<br>用于接收客户端连接请求</p>
-<p>pid-file        pid文件</p>
-<p>日志类型:<br>            错误日志<br>            慢查询日志  记录慢查询<br>            二进制日志  存储MySQL服务器产生所有写操作<br>                实际应用:<br>                    备份 恢复<br>                    主从复制</p>
-<h2 id="MySQL备份、恢复"><a href="#MySQL备份、恢复" class="headerlink" title="MySQL备份、恢复"></a>MySQL备份、恢复</h2><h3 id="备份类型、工具"><a href="#备份类型、工具" class="headerlink" title="备份类型、工具"></a>备份类型、工具</h3><h4 id="根据服务是否在线"><a href="#根据服务是否在线" class="headerlink" title="根据服务是否在线"></a>根据服务是否在线</h4><p>热备份<br>            在备份的过程，可以继续执行数据的读写操作<br>            服务持续运行的状态<br>        温备份<br>            在备份的过程，只允许读操作、不允许写操作<br>            锁表<br>        冷备份<br>            停止数据库服务、备份数据<br>            影响业务运行</p>
-<h4 id="根据备份的数据量大小"><a href="#根据备份的数据量大小" class="headerlink" title="根据备份的数据量大小"></a>根据备份的数据量大小</h4><p>完全备份<br>            每次备份，备份所有数据<br>        增量备份<br>            仅备份上一次完全备份后变化的数据<br>            仅备份上一次增量备份后变化的数据<br>        差异备份<br>            仅备份上一次完全备份后变化的数据</p>
-<p>备份策略:<br>            完全 + 增量<br>            完全 + 差异 </p>
-<h4 id="根据备份形成的结果"><a href="#根据备份形成的结果" class="headerlink" title="根据备份形成的结果"></a>根据备份形成的结果</h4><p>逻辑备份<br>            将数据库执行的写操作转换成SQL语句，保存到文件中<br>            .sql<br>            备份工具 mysqldump<br>        物理备份<br>            直接拷贝数据文件<br>            备份工具<br>            cp、tar<br>            xtrabackup    开源 percona</p>
-<h4 id="备份哪些？"><a href="#备份哪些？" class="headerlink" title="备份哪些？"></a>备份哪些？</h4><p>数据、二进制日志、配置文件</p>
-<p>注意:<br>            MySQL在恢复数据时，二进制日志一样会记录写操作，建议临时关闭</p>
-<h2 id="主从复制、读写分离"><a href="#主从复制、读写分离" class="headerlink" title="主从复制、读写分离"></a><strong>主从复制、读写分离</strong></h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>Master服务器将写操作保存到二进制日志，通过网络将事件发送给slave服务器slave服务器产生I&#x2F;O thread线程接收二进制日志事件，并将该事件写入到本地的中继日志relay log，同时产生SQL thread线程从中继日志中读取操作执行操作，确保数据同步</p>
-<p><img src="https://raw.githubusercontent.com/zhouyz1123/image/master/blogImg/clipboard.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/zhouyz1123/image/master/blogImg/clipboard.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h3 id="核心关注点"><a href="#核心关注点" class="headerlink" title="核心关注点"></a>核心关注点</h3><p>数据同步</p>
-<p>复制延迟时间</p>
-<h3 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h3><p>配置server_id</p>
-<p>Master服务器启用二进制日志</p>
-<p>Master服务器要存在允许从服务器远程 连接的用户 </p>
-<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>避免数据库单点故障</p>
-<p>便于冷备份</p>
-<p>读写分离实现方式：<br>1、开发代码<br>2、数据库中间件<br>                mysql-proxy    [官网]<br>                mycat    </p>
-<h3 id="常见主从复制架构"><a href="#常见主从复制架构" class="headerlink" title="常见主从复制架构"></a>常见主从复制架构</h3><p>一主一从</p>
-<p>一主多从<br>                实现读操作的负载均衡  </p>
-<p>双主复制</p>
-<h3 id="主从复制工作方式"><a href="#主从复制工作方式" class="headerlink" title="主从复制工作方式"></a>主从复制工作方式</h3><h4 id="异步-默认"><a href="#异步-默认" class="headerlink" title="异步(默认)"></a>异步(默认)</h4><p>主库将已经提交的事务event 写入binlog后，即返回成功给app，该模式下并不保证任何已经提交的事务会传递到任何slave并被成功应用。</p>
-<h5 id="binlog-position-GTID"><a href="#binlog-position-GTID" class="headerlink" title="(binlog+position || GTID)"></a>(binlog+position || GTID)</h5><p>基于gtid的主从复制原理</p>
-<p>每个mysql数据库上都有一个唯一uuid</p>
-<p>每个事务生成一个id</p>
-<p>gtid由上面两者组合： uuid+事务id</p>
-<p>优势 :<br>        相对使用binlog+position的方法来说</p>
-<p>gtid让配置主从更加方便</p>
-<p>从提升为主时比较方便</p>
-<h4 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h4><p> 当主库提交一个事务 event，主库会等待该事务被传递到所有的slave上，且所有slave applay 该事务&#x2F;event 通知主库之后，才会返回回话，事务已经成功。</p>
-<h4 id="半同步-借助插件google公司-semi-sync"><a href="#半同步-借助插件google公司-semi-sync" class="headerlink" title="半同步(借助插件google公司 semi sync)"></a>半同步(借助插件google公司 semi sync)</h4><p>Semisynchronous Replication模式下,在主库上提交一个事务&#x2F;event，它会等待至少一个slave通知主库，slave 已经接收到传递过来的events并写入relay log，才返回给回话层 写入成功，或者直到传送日志发生超时。</p>
-<p>优点：当事务返回成功给客户端时，则事务至少在两台机器上存在，增强数据安全性。相比异步模式和全同步模式，是一种折中。</p>
-<p> 缺点：半同步的确会对数据库性能有一定影响，因为事务的提交必须等待slave 反馈。性能损耗取决于tcp&#x2F;IP 网络传输时间，也即传输已提交事务和等待slave 反馈已经接收事务的时间。</p>
-<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>从定义中可以看出 异步模式不能保证数据的安全性，因为它不等待主库提交的事务在slave 上落盘，而全同步模式由于要等待所有的slave 确认已提交事务成功被应用，如此则会带来事务处理上的延时。semi sync 则取了一个比较折中的方式，确保已提交的事务必须存在于至少两个机器(主库和任一备库)，立即返回给客户端 事务成功。</p>
-<h2 id="什么是MyCAT"><a href="#什么是MyCAT" class="headerlink" title="什么是MyCAT?"></a>什么是MyCAT?</h2><p>MyCat是目前最流行的基于java语言编写的数据库中间件，是一个实现MySQL协议的服务器，前端用户可以把它看作是一个数据库代理，用MySQL客户端工具和命令行访问，而其后端可以用MySQL原生协议与多个MySQL服务器通信，也可以用JDBC协议与大多数主流数据库服务器通信，其核心功能是分库分表。配合数据库的主从模式还可实现读写分离。</p>
-<h3 id="什么是分库分表"><a href="#什么是分库分表" class="headerlink" title="什么是分库分表?"></a>什么是分库分表?</h3><p>在业务数据量过多时，而且数据不断持续增长的情况下，为了缓解单台服务器的压力，可以考虑使用分库分表方案。分库分表实际上是两种方案，即分库(垂直切分)、分表(水平切分)</p>
-<h2 id="什么是MHA"><a href="#什么是MHA" class="headerlink" title="什么是MHA?"></a>什么是MHA?</h2><p>MHA（Master HA）是一款开源的 MySQL 的高可用程序</p>
-<p>应用场景:<br>                一主多从的环境</p>
-<p>作用:<br>            提升主从复制环境中主服务器的可用性, 尽量减少故障时间<br>            周期性检测主服务器的运行状态，一旦检测到主服务器故障后，会在现有的从服  务器选举一个新主服务器，并把其他的从服务器自动连接到新主服务器上，继续维持主从复制的运行<br>            同时MHA还会尝试检测旧主服务器二进制日志，将二进制日志文件在新主服务器执行，尽可能保证数据完整</p>
-<h3 id="服务角色"><a href="#服务角色" class="headerlink" title="服务角色"></a>服务角色</h3><p>MHA 服务有两种角色， MHA Manager(管理节点)和 MHA Node(数据节点)：<br>MHA Manager：<br>　　通常单独部署在一台独立机器上管理多个 master&#x2F;slave 集群(组)，每个 master&#x2F;slave 集群称作一个 application，用来管理统筹整个集群。<br>MHA node：<br>　　运行在每台 MySQL 服务器上(master&#x2F;slave&#x2F;manager)，它通过监控具备解析和清理 logs 功能的脚本来加快故障转移。<br>　　主要是接收管理节点所发出指令的代理，代理需要运行在每一个 mysql 节点上。简单讲 node 就是用来收集从节点服务器上所生成的 bin-log 。对比打算提升为新的主节点之上的从节点的是否拥有并完成操作，如果没有发给新主节点在本地应用后提升为主节点。</p>
+        <h1 id="Linux三剑客-grep、sed、awk"><a href="#Linux三剑客-grep、sed、awk" class="headerlink" title="Linux三剑客(grep、sed、awk)"></a>Linux三剑客(grep、sed、awk)</h1><p><strong>三剑客的功能非常强大，但我们只需要掌握他们分别擅长的领域即可：grep擅长查找功能，sed擅长取行和替换。awk擅长取列</strong></p>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><h4 id="匹配单个字符的元字符"><a href="#匹配单个字符的元字符" class="headerlink" title="匹配单个字符的元字符"></a>匹配单个字符的元字符</h4><p><strong>.    任意单个字符</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep &quot;r..t&quot; /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<p>[akt]        任意其中一个字符</p>
+<p><strong>-     连续的字符</strong><br>                [a-z]    任意单个小写字母<br>                [A-Z]        [a-zA-Z]<br>                [0-9]        [a-zA-Z0-9]<br>        <strong>^    取反</strong></p>
+<p>[^a-z]</p>
+<p><strong>[[:space:]]        任意单个空白字符</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep &quot;a[[:space:]]t&quot; /tmp/file01 </span><br></pre></td></tr></table></figure>
+
+<h4 id="匹配字符出现的次数"><a href="#匹配字符出现的次数" class="headerlink" title="匹配字符出现的次数"></a>匹配字符出现的次数</h4><p><strong>*    前一个字符出现任意次</strong><br>                ab*<br>                .*<br>    <strong>?    前一个字符最多出现一次    可有可无</strong><br>            ab?      a   ab<br>    <strong>+    前一个字符至少出现一次</strong><br>ab+        ab abb abbb<br>    <strong>{3}    前一个字符精确出现3次</strong><br>ab{3}    abbb<br>{2, 5}    至少2次，最多5次<br>{2,}        至少出现2次</p>
+<h4 id="分组"><a href="#分组" class="headerlink" title="分组  \( \)"></a>分组  \( \)</h4><p>\(ab\)+</p>
+<h4 id="匹配字符出现位置"><a href="#匹配字符出现位置" class="headerlink" title="匹配字符出现位置"></a>匹配字符出现位置</h4><p>^string        以string开头<br>        string$        以string结尾<br>        <strong>^$            空行</strong></p>
+<h3 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h3><h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p>将文件逐行读入到模式空间(内存)，在内存中对文件进行修改，修改完毕后，默认会把模式空间所有内容显示到屏幕上<br>        逐行处理<br>        默认情况下，不会修改原文件</p>
+<h4 id="sed命令格式"><a href="#sed命令格式" class="headerlink" title="sed命令格式"></a>sed命令格式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed [option] &#x27;script&#x27; 文件名称</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed [option] &#x27;lineCMD&#x27; 文件名称</span><br></pre></td></tr></table></figure>
+
+<h5 id="line常用的写法"><a href="#line常用的写法" class="headerlink" title="line常用的写法"></a><strong>line常用的写法</strong></h5><p>line        哪些行           CMD        操作<br>        line不写，表示对文件每一行进行操作</p>
+<p>行号        10<br>        起始行号,终止行号<br>            5,10<br>            5,+3<br>        &#x2F;正则表达式&#x2F;        &#x2F;^#&#x2F;<br>        &#x2F;正则表达式&#x2F;,&#x2F;正则表达式&#x2F;</p>
+<h4 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h4><h5 id="d-删除整行"><a href="#d-删除整行" class="headerlink" title="d    删除整行"></a><strong>d    删除整行</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;1d&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# sed &#x27;1,5d&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# sed &#x27;/^#/d&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# sed &#x27;/^\//d&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# netstat -antp | sed &#x27;1,2d&#x27;</span><br></pre></td></tr></table></figure>
+
+<h5 id="p-显示整行"><a href="#p-显示整行" class="headerlink" title="p    显示整行"></a><strong>p    显示整行</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;/^#/p&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# df -hT | sed -n &#x27;/^\/dev/p&#x27;</span><br></pre></td></tr></table></figure>
+
+<h5 id="a-内容-追加内容"><a href="#a-内容-追加内容" class="headerlink" title="a   \内容        追加内容"></a><strong>a   \内容        追加内容</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;$a \10.1.1.1  node01.linux.com&#x27; /etc/hosts</span><br><span class="line">[root@localhost ~]# sed &#x27;$a \export JAVA_HOME=/opt/jdk&#x27; /etc/profile</span><br></pre></td></tr></table></figure>
+
+<h5 id="i-内容-插入内容"><a href="#i-内容-插入内容" class="headerlink" title="i \内容        插入内容"></a><strong>i \内容        插入内容</strong></h5><p>​        </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;i \172.16.10.1 www.linux.com&#x27; /etc/hosts</span><br><span class="line">[root@localhost ~]# sed &#x27;/datadir/i \server_id=10\nlog_bin=master&#x27; /etc/my.cnf</span><br></pre></td></tr></table></figure>
+
+<h5 id="c-内容-整行替换"><a href="#c-内容-整行替换" class="headerlink" title="c   \内容        整行替换"></a><strong>c   \内容        整行替换</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;/#Port/c \Port 55555&#x27; /etc/ssh/sshd_config </span><br></pre></td></tr></table></figure>
+
+<h5 id="w-文件名称-另存为"><a href="#w-文件名称-另存为" class="headerlink" title="w 文件名称        另存为"></a><strong>w 文件名称        另存为</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;/^#/w /tmp/test01&#x27; /etc/fstab </span><br></pre></td></tr></table></figure>
+
+<h5 id="r-文件名称-合并文件"><a href="#r-文件名称-合并文件" class="headerlink" title="r  文件名称        合并文件"></a><strong>r  文件名称        合并文件</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;$r /etc/hosts&#x27; /etc/redhat-release </span><br></pre></td></tr></table></figure>
+
+<h5 id="x3D-显示行号-x2F-统计行数"><a href="#x3D-显示行号-x2F-统计行数" class="headerlink" title="&#x3D;        显示行号&#x2F;统计行数"></a><strong>&#x3D;        显示行号&#x2F;统计行数</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;$=&#x27; /etc/fstab </span><br></pre></td></tr></table></figure>
+
+<h5 id="n-读取下一行"><a href="#n-读取下一行" class="headerlink" title="n         读取下一行"></a><strong>n         读取下一行</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;&#123;n;p&#125;&#x27; /tmp/file01 </span><br><span class="line">[root@localhost ~]# sed -n &#x27;&#123;p;n&#125;&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
+
+<h5 id="s-x2F-旧内容-x2F-新内容-x2F-修饰符"><a href="#s-x2F-旧内容-x2F-新内容-x2F-修饰符" class="headerlink" title="s&#x2F;旧内容&#x2F;新内容&#x2F;[修饰符]"></a><strong>s&#x2F;旧内容&#x2F;新内容&#x2F;[修饰符]</strong></h5><p>​        文件查找替换<br>​        旧内容支持正则表达式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;/^UUID=/s/UUID/uuid/&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# sed &#x27;$s/4/8/&#x27; /etc/fstab </span><br><span class="line"></span><br><span class="line">[root@localhost ~]# sed &#x27;$s/[0-9]/!/g&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# sed &#x27;s/[0-9]/!/g&#x27; /etc/fstab </span><br><span class="line"></span><br><span class="line">[root@localhost ~]# sed &#x27;$s/\//?/g&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# sed &#x27;$s|/|?|g&#x27; /etc/fstab </span><br></pre></td></tr></table></figure>
+
+<h5 id="反向引用"><a href="#反向引用" class="headerlink" title="反向引用"></a><strong>反向引用</strong></h5><p>​        \1    \2    \3<br>​    依次表示引用正则表达式中第一个分组内容、第二个分组内容、依次类推</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;s|\(l..e\)|\1r|&#x27; /tmp/file01 </span><br><span class="line">[root@localhost ~]# sed &#x27;s|l\(..e\)|L\1|&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
+
+<h5 id="amp-匹配的所有旧内容"><a href="#amp-匹配的所有旧内容" class="headerlink" title="&amp;: 匹配的所有旧内容"></a><strong>&amp;: 匹配的所有旧内容</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;s|l..e|&amp;r|&#x27; /tmp/file01</span><br></pre></td></tr></table></figure>
+
+<h4 id="常用选项"><a href="#常用选项" class="headerlink" title="常用选项"></a>常用选项</h4><h5 id="n-取消显示模式空间的内容"><a href="#n-取消显示模式空间的内容" class="headerlink" title="-n    取消显示模式空间的内容"></a><strong>-n    取消显示模式空间的内容</strong></h5><h5 id="i-修改原文件"><a href="#i-修改原文件" class="headerlink" title="-i     修改原文件"></a><strong>-i</strong>     <strong>修改原文件</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -i &#x27;/^$/d&#x27; /etc/fstab</span><br></pre></td></tr></table></figure>
+
+<h5 id="e-同时做多个修改"><a href="#e-同时做多个修改" class="headerlink" title="-e    同时做多个修改"></a><strong>-e    同时做多个修改</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -e &#x27;/^#/d&#x27; -e &#x27;/UUID/d&#x27; /etc/fstab </span><br></pre></td></tr></table></figure>
+
+<h5 id="f-操作文件"><a href="#f-操作文件" class="headerlink" title="-f  操作文件"></a><strong>-f  操作文件</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /tmp/list</span><br><span class="line">/^#/d</span><br><span class="line">/UUID/d</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# sed -f /tmp/list  /etc/fstab </span><br></pre></td></tr></table></figure>
+
+<h5 id="r-支持扩展正则表达式"><a href="#r-支持扩展正则表达式" class="headerlink" title="-r    支持扩展正则表达式"></a><strong>-r    支持扩展正则表达式</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -r &#x27;s|l(..e)|L\1|&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
+
+<h5 id="–follow-symlinks-软链接文件"><a href="#–follow-symlinks-软链接文件" class="headerlink" title="–follow-symlinks    软链接文件"></a><strong>–follow-symlinks    软链接文件</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -ri --follow-symlinks &#x27;2d&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
+
+<h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><p>默认情况下，awk可以使用<strong>空白字符</strong>分割文本, awk内部可以分别**$1, $2**变量代表第一段内容<br>        -F选项指定分割符<br>        逐行处理</p>
+<h4 id="awk命令格式"><a href="#awk命令格式" class="headerlink" title="awk命令格式"></a>awk命令格式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk [option] &#x27;script&#x27; 文件名称  文件名称 </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk [option] &#x27;PATTERN&#123;action&#125;&#x27;  文件名称  文件名称</span><br></pre></td></tr></table></figure>
+
+<h5 id="常用action"><a href="#常用action" class="headerlink" title="常用action"></a>常用action</h5><p><strong>print操作</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;1p&#x27; /etc/passwd | awk -F: &#x27;&#123;print $1&#125;&#x27;</span><br><span class="line">[root@localhost ~]# sed -n &#x27;1p&#x27; /etc/passwd | awk -F: &#x27;&#123;print $0&#125;&#x27;</span><br><span class="line">[root@localhost ~]# sed -n &#x27;1p&#x27; /etc/passwd | awk -F: &#x27;&#123;print $1, $3&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;1,3p&#x27; /etc/passwd | awk -F: &#x27;&#123;print &quot;用户名:&quot;,$1&#125;&#x27;</span><br><span class="line">[root@localhost ~]# rpm -qa | grep php | awk -F-5 &#x27;&#123;print &quot;rpm -e --nodeps&quot;, $1&#125;&#x27; | bash</span><br></pre></td></tr></table></figure>
+
+<p><strong>printf操作</strong><br>            格式化输出内容<br>            使用格式<br>            printf “格式格式”,内容,内容<br>                占位符<br>                        <strong>%s    字符串</strong><br>                        <strong>%d    整数</strong><br>                        %f    浮点数</p>
+<p><strong>设置字符的宽度</strong><br>%10s</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;&#123;printf &quot;%20s&quot;, $2&#125;&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
+
+<p>默认数据在指定的宽度字符是以右对齐的方式显示</p>
+<p><strong>设置左对齐</strong><br>%-10s</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;&#123;printf &quot;%-20s&quot;, $2&#125;&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
+
+<p><strong>默认没有换行，如果需要换行，手动添加换行符\n</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;&#123;printf &quot;%-20s\n&quot;, $2&#125;&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;1,3p&#x27; /etc/passwd | awk -F: &#x27;&#123;printf &quot;%-8s%-16s\n&quot;, $1, $7&#125;&#x27;</span><br><span class="line">[root@localhost ~]# df -hT | sed -n &#x27;/^\/dev/p&#x27; | awk &#x27;&#123;printf &quot;%-10s%-30s%-10s%-12s%-10s%-8s\n&quot;,&quot;磁盘名称:&quot;, $1, &quot;挂载目录:&quot;, $7, &quot;剩余空间:&quot;, $6&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<h4 id="awk常用内置变量"><a href="#awk常用内置变量" class="headerlink" title="awk常用内置变量"></a>awk常用内置变量</h4><h5 id="FS-保存行分割符，默认空白"><a href="#FS-保存行分割符，默认空白" class="headerlink" title="FS    保存行分割符，默认空白"></a>FS    保存行分割符，默认空白</h5><p>相当于-F选项的作用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;1p&#x27; /etc/passwd | awk -v FS=&quot;:&quot; &#x27;&#123;print $1&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<h5 id="OFS-指定awk显示多段内容时，多段内容间的分隔符"><a href="#OFS-指定awk显示多段内容时，多段内容间的分隔符" class="headerlink" title="OFS    指定awk显示多段内容时，多段内容间的分隔符"></a>OFS    指定awk显示多段内容时，多段内容间的分隔符</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;1p&#x27; /etc/passwd | awk -v OFS=&quot;---&gt;&quot; -F: &#x27;&#123;print $1, $7&#125;&#x27;</span><br><span class="line">root---&gt;/bin/bash</span><br></pre></td></tr></table></figure>
+
+<h5 id="NR-记录行号"><a href="#NR-记录行号" class="headerlink" title="NR    记录行号"></a>NR    记录行号</h5><p>处理多个文件时，所有文件的行号是连续记录的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;&#123;print NR&#125;&#x27; /etc/hosts /etc/redhat-release </span><br><span class="line">[root@localhost ~]# awk &#x27;NR==3&#123;print $0&#125;&#x27; /etc/passwd</span><br></pre></td></tr></table></figure>
+
+<h5 id="FNR-记录行号"><a href="#FNR-记录行号" class="headerlink" title="FNR    记录行号"></a>FNR    记录行号</h5><p>处理多个文件时，所有文件的行号是独立记录的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;&#123;print FNR&#125;&#x27; /etc/hosts /etc/redhat-release </span><br></pre></td></tr></table></figure>
+
+<h5 id="NF-记录awk分割行后的段数"><a href="#NF-记录awk分割行后的段数" class="headerlink" title="NF     记录awk分割行后的段数"></a>NF     记录awk分割行后的段数</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;1p&#x27; /etc/passwd | awk -F: &#x27;&#123;print NF&#125;&#x27;</span><br><span class="line">[root@localhost ~]# awk &#x27;&#123;print $NF&#125;&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
+
+<h5 id="FILENAME-保存awk正在处理的文件名"><a href="#FILENAME-保存awk正在处理的文件名" class="headerlink" title="FILENAME    保存awk正在处理的文件名"></a>FILENAME    保存awk正在处理的文件名</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;&#123;print FILENAME&#125;&#x27; /tmp/file01 </span><br><span class="line">/tmp/file01</span><br><span class="line">/tmp/file01</span><br><span class="line">/tmp/file01</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# awk &#x27;&#123;print FILENAME&#125;&#x27; /tmp/file01 | uniq</span><br><span class="line">/tmp/file01</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="awk自定义变量"><a href="#awk自定义变量" class="headerlink" title="awk自定义变量"></a>awk自定义变量</h4><p> <strong>-v 变量名称&#x3D;值</strong>                             </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk -v name=&quot;martin&quot; &#x27;&#123;print &quot;hello&quot;, name&#125;&#x27; /etc/fstab  [root@localhost ~]# awk -v number=100 &#x27;&#123;print number&#125;&#x27; /etc/fstab      </span><br></pre></td></tr></table></figure>
+
+<h4 id="awk常用文本处理模式"><a href="#awk常用文本处理模式" class="headerlink" title="awk常用文本处理模式"></a>awk常用文本处理模式</h4><h5 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a><strong>表达式</strong></h5><p><strong>比较运算符</strong><br>            &#x3D;&#x3D;, &gt;, &gt;&#x3D;, &lt;, &lt;&#x3D;, !&#x3D;<br>            数据 ~ 正则表达式<br>                    判断数据是否可以被正则表达式<br>            数据  !~ 正则表达式<br>        <strong>逻辑运算符</strong><br>            &amp;&amp;    并且<br>            ||    或者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk -F: &#x27;$3&gt;=1 &amp;&amp; $3 &lt;= 999&#123;print $1&#125;&#x27; /etc/passwd</span><br><span class="line">[root@localhost ~]# awk -F: &#x27;$7==&quot;/sbin/nologin&quot;&#123;print $1&#125;&#x27; /etc/passwd</span><br><span class="line">[root@localhost ~]# awk -F: &#x27;$7 ~ &quot;nologin$&quot;&#123;print $1&#125;&#x27; /etc/passwd</span><br><span class="line">[root@localhost ~]# df -hT | grep &quot;^/dev&quot; | awk &#x27;+$6&gt;20&#123;print &quot;磁盘名称:&quot;, $1, &quot;剩余空间&quot;, $5, &quot;挂载目录:&quot;, $NF&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<h5 id="x2F-正则表达式-x2F"><a href="#x2F-正则表达式-x2F" class="headerlink" title="&#x2F;正则表达式&#x2F;"></a><strong>&#x2F;正则表达式&#x2F;</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# netstat -antp | awk &#x27;/^tcp/&#123;print $0&#125;&#x27;</span><br><span class="line">[root@localhost ~]# awk -F: &#x27;/^[rhg]/&#123;print $1&#125;&#x27; /etc/passwd</span><br><span class="line">[root@localhost ~]# ls -l /etc/ | awk &#x27;/^-/&#123;print $NF&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<h5 id="x2F-正则表达式-x2F-x2F-正则表达式-x2F"><a href="#x2F-正则表达式-x2F-x2F-正则表达式-x2F" class="headerlink" title="&#x2F;正则表达式&#x2F;,&#x2F;正则表达式&#x2F;"></a><strong>&#x2F;正则表达式&#x2F;,&#x2F;正则表达式&#x2F;</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;/Sep 26 09:02:30/,/Sep 26 09:18:04/&#123;print $0&#125;&#x27; /var/log/messages</span><br></pre></td></tr></table></figure>
+
+<h5 id="BEGIN"><a href="#BEGIN" class="headerlink" title="BEGIN{}"></a><strong>BEGIN{}</strong></h5><p>定义awk开始处理内容前执行的操作 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;1,3p&#x27; /etc/passwd | awk -F: &#x27;BEGIN&#123;print &quot;----数据开始----&quot;&#125;&#123;print $1,$7&#125;&#x27; </span><br><span class="line">[root@localhost ~]# awk &#x27;BEGIN&#123;name=&quot;martin&quot;; print name&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<h5 id="END"><a href="#END" class="headerlink" title="END{}"></a><strong>END{}</strong></h5><p>定义awk处理内容后要执行的操作 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;1,3p&#x27; /etc/passwd | awk -F: &#x27;BEGIN&#123;print &quot;----数据开始-----&quot;&#125;&#123;print $1, $7&#125;END&#123;print &quot;----数据结束----&quot;&#125;&#x27;</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# awk -v number=0 &#x27;&#123;number++&#125;END&#123;print number&#125;&#x27; /etc/passwd </span><br></pre></td></tr></table></figure>
+
+<h4 id="awk条件判断"><a href="#awk条件判断" class="headerlink" title="awk条件判断"></a>awk条件判断</h4><p>1、语法<br>if (条件) {操作}<br>if (条件) {操作} else {操作}<br>if (条件) {操作} else if (条件) {操作}</p>
+<p>[root@localhost ~]# awk -F: ‘{if($3&#x3D;&#x3D;0) {print $1, “是管理员”} else {print $1, “是普通用户”}}’ &#x2F;etc&#x2F;passwd<br>[root@localhost ~]# awk -F: -v bash_number&#x3D;0 -v nologin_number&#x3D;0 ‘{if($7&#x3D;&#x3D;”&#x2F;bin&#x2F;bash”) {bash_number++} else if($7&#x3D;&#x3D;”&#x2F;sbin&#x2F;nologin”) {nologin_number++}}END{print “bash用户数”, bash_number, “nologin用户数”, nologin_number}’ &#x2F;etc&#x2F;passwd</p>
+<h4 id="awk循环"><a href="#awk循环" class="headerlink" title="awk循环"></a>awk循环</h4><h5 id="for循环语法"><a href="#for循环语法" class="headerlink" title="for循环语法"></a>for循环语法</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for(变量定义; 循环条件; 改变变量的值) &#123;操作&#125;</span><br><span class="line">for(i=1; i&lt;=10; i++)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;1,3p&#x27; /etc/passwd | awk -F: &#x27;&#123;for(i=1; i&lt;=7; i++) &#123;if(length($i)&gt;=5) &#123;print $i&#125;&#125;&#125;&#x27;</span><br><span class="line">[root@localhost ~]# awk &#x27;&#123;for(i=1; i&lt;=NF; i++) &#123;if(length($i)&gt;=4) &#123;print $i&#125;&#125;&#125;&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="awk数组"><a href="#awk数组" class="headerlink" title="awk数组"></a>awk数组</h4><h5 id="定义数组"><a href="#定义数组" class="headerlink" title="定义数组"></a>定义数组</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;BEGIN&#123;test[1]=&quot;martin&quot;; test[2]=&quot;robin&quot;; test[3]=&quot;lz&quot;&#125;&#x27;</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# awk &#x27;BEGIN&#123;test[1]=&quot;martin&quot;; test[2]=&quot;robin&quot;; test[3]=&quot;lz&quot;; print test[2]&#125;&#x27;</span><br><span class="line">robin</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="获取数组中所有数据"><a href="#获取数组中所有数据" class="headerlink" title="获取数组中所有数据"></a>获取数组中所有数据</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;BEGIN&#123;test[1]=&quot;martin&quot;; test[2]=&quot;robin&quot;; test[3]=&quot;lz&quot;; for(i=1; i&lt;=3; i++) &#123;print test[i]&#125;&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="数组支持以任意数据作为下标"><a href="#数组支持以任意数据作为下标" class="headerlink" title="数组支持以任意数据作为下标"></a>数组支持以任意数据作为下标</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;BEGIN&#123;test[&quot;martin&quot;]=&quot;北京&quot;; test[&quot;robin&quot;]=&quot;河北&quot;; test[&quot;lz&quot;]=&quot;天津&quot;&#125;&#x27;</span><br><span class="line">[root@localhost ~]# awk &#x27;BEGIN&#123;test[&quot;martin&quot;]=&quot;北京&quot;; test[&quot;robin&quot;]=&quot;河北&quot;; test[&quot;lz&quot;]=&quot;天津&quot;; print test[&quot;robin&quot;]&#125;&#x27;</span><br><span class="line">河北</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;BEGIN&#123;test[&quot;martin&quot;]=&quot;北京&quot;; test[&quot;robin&quot;]=&quot;河北&quot;; test[&quot;lz&quot;]=&quot;天津&quot;; for(i in test) &#123;print i&#125;&#125;&#x27;</span><br><span class="line">robin</span><br><span class="line">lz</span><br><span class="line">martin</span><br><span class="line">[root@localhost ~]# awk &#x27;BEGIN&#123;test[&quot;martin&quot;]=&quot;北京&quot;; test[&quot;robin&quot;]=&quot;河北&quot;; test[&quot;lz&quot;]=&quot;天津&quot;; for(i in test) &#123;print test[i]&#125;&#125;&#x27;</span><br><span class="line">河北</span><br><span class="line">天津</span><br><span class="line">北京</span><br><span class="line">[root@localhost ~]# awk &#x27;BEGIN&#123;test[&quot;martin&quot;]=&quot;北京&quot;; test[&quot;robin&quot;]=&quot;河北&quot;; test[&quot;lz&quot;]=&quot;天津&quot;; for(i in test) &#123;print &quot;姓名:&quot;, i, &quot;住址:&quot;, test[i]&#125;&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk -F: &#x27;&#123;data[$7]++&#125;END&#123;for(i in data) &#123;print i, data[i]&#125;&#125;&#x27; /etc/passwd</span><br><span class="line">[root@localhost ~]# netstat -antp | awk &#x27;/^tcp/&#123;tcp_number[$6]++&#125;END&#123;for(i in tcp_number) &#123;print i, tcp_number[i]&#125;&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;&#123;uv[$1]++&#125;END&#123;for(i in uv) &#123;print i, uv[i]&#125;&#125;&#x27; access_log</span><br><span class="line"></span><br><span class="line">awk &#x27;&#123;pv[$7]++&#125;END&#123;for(i in pv) &#123;print i, pv[i]&#125;&#125;&#x27; access_log          </span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h4 id="awk的内置函数"><a href="#awk的内置函数" class="headerlink" title="awk的内置函数"></a><strong>awk的内置函数</strong></h4><h5 id="split-字符串-数组-行分割符"><a href="#split-字符串-数组-行分割符" class="headerlink" title="split(字符串,数组,行分割符)"></a>split(字符串,数组,行分割符)</h5><p>使用分割符分割字符串, 将分割后的字符串保存到指定数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;BEGIN&#123;split(&quot;a-b-c&quot;, data, &quot;-&quot;); print data[1]&#125;&#x27;</span><br><span class="line">awk &#x27;BEGIN&#123;split(&quot;a-b-c&quot;, data, &quot;-&quot;); print data[2]&#125;&#x27;</span><br><span class="line">awk &#x27;BEGIN&#123;split(&quot;a-b-c&quot;, data, &quot;-&quot;); print data[3]&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="length-string"><a href="#length-string" class="headerlink" title="length(string)"></a>length(string)</h5><p>返回string字符串的字符个数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;BEGIN&#123;print length(&quot;shell&quot;)&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="substr-string-start-length"><a href="#substr-string-start-length" class="headerlink" title="substr(string,start [,length])"></a>substr(string,start [,length])</h5><p>取string字符串中的子串，从start开始，取length个；start从1开始计数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;BEGIN&#123;data=substr(&quot;hello&quot;,2, 3); print data&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="system-command"><a href="#system-command" class="headerlink" title="system(command)"></a>system(command)</h5><p>支持在awk内部调用shell命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;BEGIN&#123;system(&quot;ifconfig enp2s0&quot;)&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="systime"><a href="#systime" class="headerlink" title="systime()"></a>systime()</h5><p>返回系统当前时间</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;BEGIN&#123;print systime()&#125;&#x27;</span><br><span class="line">  awk &#x27;BEGIN&#123;now=systime(); print strftime(&quot;%F_%T&quot;, now)&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="tolower-string"><a href="#tolower-string" class="headerlink" title="tolower(string)"></a>tolower(string)</h5><p>将string中的所有字母转为小写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;BEGIN&#123;print tolower(&quot;aBcD&quot;)&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="toupper-string"><a href="#toupper-string" class="headerlink" title="toupper(string)"></a>toupper(string)</h5><p>将string中所有字母转换为大写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;BEGIN&#123;print toupper(&quot;aBcD&quot;)&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
 
       </div>
       <div class="post-tags-categories">
@@ -618,7 +742,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2022/03/12/MySQL/" target="_blank" title="MySQL">http://example.com/2022/03/12/MySQL/</a>
+    <a href="/2022/03/13/Linux三剑客(grep、sed、awk)/" target="_blank" title="Linux三剑客(grep、sed、awk)">http://example.com/2022/03/13/Linux三剑客(grep、sed、awk)/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -636,40 +760,22 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/9.jpg" class="lazyload placeholder" data-srcset="/medias/9.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-    </div>
-    <a href="/2022/03/13/Linux%E4%B8%89%E5%89%91%E5%AE%A2(grep%E3%80%81sed%E3%80%81awk)/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> 上一篇:
-        <div class="title-text">Linux三剑客(grep、sed、awk)</div>
-      </div>
-      
-      <!-- <div class="content">
-        Linux三剑客(grep、sed、awk)三剑客的功能非常强大，但我们只需要掌握他们分别擅长的领域即可：grep擅长查
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/6.jpg" class="lazyload placeholder" data-srcset="/medias/6.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/4.jpg" class="lazyload placeholder" data-srcset="/medias/4.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
     </div>
-    <a href="/2022/03/08/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%8F%8A%E5%85%B6%E6%A6%82%E5%BF%B5/" class="post-nav-link">
+    <a href="/2022/03/12/MySQL/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fas fa-angle-right"></i>
-        <div class="title-text">基础知识及其概念</div>
+        <div class="title-text">MySQL</div>
       </div>
       <!-- <div class="content">
-        基础知识及其概念OSI七层模型应用层、表示层、会话层、传输层、网络层、数据链路层、物理层
-典型协议应用层协议HTTP,H
+        MySQL什么是MySQL? MySQL有什么优点?MySQL是一个关系型数据库管理系统
+简单明了 开源 可扩展且快速 
       </div> -->
     </a>
   </div>

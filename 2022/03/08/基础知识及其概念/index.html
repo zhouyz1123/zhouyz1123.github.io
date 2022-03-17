@@ -556,7 +556,13 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h1 id="基础知识及其概念"><a href="#基础知识及其概念" class="headerlink" title="基础知识及其概念"></a>基础知识及其概念</h1><h2 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h2><p>应用层、表示层、会话层、传输层、网络层、数据链路层、物理层</p>
+        <h1 id="基础知识及其概念"><a href="#基础知识及其概念" class="headerlink" title="基础知识及其概念"></a>基础知识及其概念</h1><h2 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h2><h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><p>提供了应用程序、软件(微信、QQ、浏览器等)<br>        提供了人与网络间的接口(软件)、产生数据 </p>
+<h3 id="表示层"><a href="#表示层" class="headerlink" title="表示层"></a>表示层</h3><p>提供数据格式转换(加密、解密、压缩、解压缩)</p>
+<h3 id="会话层"><a href="#会话层" class="headerlink" title="会话层"></a>会话层</h3><p>建立会话、维护会话、断开会话</p>
+<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><p>提供端到端的通信, 实现数据可靠传输<br>        端口号 Port<br>            1—65535数字<br>            区分不同的应用程序</p>
+<h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><p>提供网络到网络间的数据传输<br>        根据IP地址识别数据应该发送到哪个网段</p>
+<h3 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h3><p>提供点到点的通信<br>        根据MAC地址【物理地址】识别数据应该到哪个主机</p>
+<h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><p>提供物理设备(网卡、网线、光纤)</p>
 <h2 id="典型协议"><a href="#典型协议" class="headerlink" title="典型协议"></a>典型协议</h2><h4 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h4><p>HTTP,HTTPS:    提供网站服务</p>
 <p>FTP:    实现文件共享、传输</p>
 <p>SMTP:    发送邮件</p>
@@ -712,6 +718,15 @@
 <p>客户端发出访问网站相应页面请求（发出http协议请求报文）</p>
 <p>服务端发出相应访问页面的请求信息（发出http响应报文）</p>
 <p>断开tcp协议四次挥手过程</p>
+<h2 id="TCP协议中的三次握手和四次挥手"><a href="#TCP协议中的三次握手和四次挥手" class="headerlink" title="TCP协议中的三次握手和四次挥手"></a>TCP协议中的三次握手和四次挥手</h2><p><img src="https://raw.githubusercontent.com/zhouyz1123/image/master/blogImg/tcp.jfif" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/zhouyz1123/image/master/blogImg/tcp.jfif" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><p>（1）第一次握手：建立连接时，客户端A发送SYN包（SYN&#x3D;j）到服务器B，并进入SYN_SEND状态，等待服务器B确认。</p>
+<p>（2）第二次握手：服务器B收到SYN包，必须确认客户A的SYN（ACK&#x3D;j+1），同时自己也发送一个SYN包（SYN&#x3D;k），即SYN+ACK包，此时服务器B进入SYN_RECV状态。</p>
+<p>（3）第三次握手：客户端A收到服务器B的SYN＋ACK包，向服务器B发送确认包ACK（ACK&#x3D;k+1），此包发送完毕，客户端A和服务器B进入ESTABLISHED状态，完成三次握手。</p>
+<p>完成三次握手，客户端与服务器开始传送数据。</p>
+<h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h3><p>（1）客户端A发送一个FIN，用来关闭客户A到服务器B的数据传送。 </p>
+<p>（2）服务器B收到这个FIN，它发回一个ACK，确认序号为收到的序号加1。和SYN一样，一个FIN将占用一个序号。 </p>
+<p>（3）服务器B关闭与客户端A的连接，发送一个FIN给客户端A。 </p>
+<p>（4）客户端A发回ACK报文确认，并将确认序号设置为收到序号加1。 </p>
 
       </div>
       <div class="post-tags-categories">

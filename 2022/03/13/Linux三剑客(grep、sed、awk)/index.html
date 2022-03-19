@@ -556,82 +556,181 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h1 id="Linux三剑客-grep、sed、awk"><a href="#Linux三剑客-grep、sed、awk" class="headerlink" title="Linux三剑客(grep、sed、awk)"></a>Linux三剑客(grep、sed、awk)</h1><p><strong>三剑客的功能非常强大，但我们只需要掌握他们分别擅长的领域即可：grep擅长查找功能，sed擅长取行和替换。awk擅长取列</strong></p>
-<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><h4 id="匹配单个字符的元字符"><a href="#匹配单个字符的元字符" class="headerlink" title="匹配单个字符的元字符"></a>匹配单个字符的元字符</h4><p><strong>.    任意单个字符</strong></p>
+        <h1 id="Linux三剑客-grep、sed、awk"><a href="#Linux三剑客-grep、sed、awk" class="headerlink" title="Linux三剑客(grep、sed、awk)"></a>Linux三剑客(grep、sed、awk)</h1><p>三剑客的功能非常强大，但我们只需要掌握他们分别擅长的领域即可：<font color=#FF0000>grep擅长查找功能，sed擅长取行和替换，awk擅长取列。</font></p>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><h4 id="匹配单个字符的元字符"><a href="#匹配单个字符的元字符" class="headerlink" title="匹配单个字符的元字符"></a>匹配单个字符的元字符</h4><p>.    任意单个字符</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep &quot;r..t&quot; /etc/passwd</span><br></pre></td></tr></table></figure>
 
-<p>[akt]        任意其中一个字符</p>
-<p><strong>-     连续的字符</strong><br>                [a-z]    任意单个小写字母<br>                [A-Z]        [a-zA-Z]<br>                [0-9]        [a-zA-Z0-9]<br>        <strong>^    取反</strong></p>
-<p>[^a-z]</p>
-<p><strong>[[:space:]]        任意单个空白字符</strong></p>
+<ul>
+<li><p>[akt]</p>
+<ul>
+<li>任意其中一个字符</li>
+</ul>
+</li>
+<li><p>- 连续的字符</p>
+<ul>
+<li><p>[a-z]    任意单个小写字母</p>
+</li>
+<li><p>[A-Z]    [a-zA-Z]        </p>
+</li>
+<li><p>[0-9]    [a-zA-Z0-9]</p>
+</li>
+</ul>
+</li>
+<li><p>^    取反</p>
+<ul>
+<li>[^a-z]</li>
+</ul>
+</li>
+<li><p>[[:space:]]    任意单个空白字符</p>
+</li>
+</ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# grep &quot;a[[:space:]]t&quot; /tmp/file01 </span><br></pre></td></tr></table></figure>
 
-<h4 id="匹配字符出现的次数"><a href="#匹配字符出现的次数" class="headerlink" title="匹配字符出现的次数"></a>匹配字符出现的次数</h4><p><strong>*    前一个字符出现任意次</strong><br>                ab*<br>                .*<br>    <strong>?    前一个字符最多出现一次    可有可无</strong><br>            ab?      a   ab<br>    <strong>+    前一个字符至少出现一次</strong><br>ab+        ab abb abbb<br>    <strong>{3}    前一个字符精确出现3次</strong><br>ab{3}    abbb<br>{2, 5}    至少2次，最多5次<br>{2,}        至少出现2次</p>
-<h4 id="分组"><a href="#分组" class="headerlink" title="分组  \( \)"></a>分组  \( \)</h4><p>\(ab\)+</p>
-<h4 id="匹配字符出现位置"><a href="#匹配字符出现位置" class="headerlink" title="匹配字符出现位置"></a>匹配字符出现位置</h4><p>^string        以string开头<br>        string$        以string结尾<br>        <strong>^$            空行</strong></p>
+<h4 id="匹配字符出现的次数"><a href="#匹配字符出现的次数" class="headerlink" title="匹配字符出现的次数"></a>匹配字符出现的次数</h4><ul>
+<li><p>*  前一个字符出现任意次    </p>
+<ul>
+<li><p>ab*</p>
+</li>
+<li><p>.*</p>
+</li>
+</ul>
+</li>
+<li><p>?    前一个字符最多出现一次    可有可无     </p>
+<ul>
+<li>ab?      a   ab</li>
+</ul>
+</li>
+<li><p>\+ 前一个字符至少出现一次</p>
+<ul>
+<li>ab+        ab abb abbb</li>
+</ul>
+</li>
+<li><p>{3}    前一个字符精确出现3次</p>
+<ul>
+<li>ab{3}    abbb </li>
+<li>{2, 5}    至少2次，最多5次</li>
+<li>{2,}        至少出现2次</li>
+</ul>
+</li>
+</ul>
+<h4 id="分组"><a href="#分组" class="headerlink" title="分组  ( )"></a>分组  ( )</h4><ul>
+<li>(ab)+</li>
+</ul>
+<h4 id="匹配字符出现位置"><a href="#匹配字符出现位置" class="headerlink" title="匹配字符出现位置"></a>匹配字符出现位置</h4><ul>
+<li><p>^string        以string开头</p>
+</li>
+<li><p>string$        以string结尾</p>
+</li>
+<li><p>^$                空行</p>
+</li>
+</ul>
 <h3 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h3><h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p>将文件逐行读入到模式空间(内存)，在内存中对文件进行修改，修改完毕后，默认会把模式空间所有内容显示到屏幕上<br>        逐行处理<br>        默认情况下，不会修改原文件</p>
 <h4 id="sed命令格式"><a href="#sed命令格式" class="headerlink" title="sed命令格式"></a>sed命令格式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed [option] &#x27;script&#x27; 文件名称</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed [option] &#x27;lineCMD&#x27; 文件名称</span><br></pre></td></tr></table></figure>
 
-<h5 id="line常用的写法"><a href="#line常用的写法" class="headerlink" title="line常用的写法"></a><strong>line常用的写法</strong></h5><p>line        哪些行           CMD        操作<br>        line不写，表示对文件每一行进行操作</p>
-<p>行号        10<br>        起始行号,终止行号<br>            5,10<br>            5,+3<br>        &#x2F;正则表达式&#x2F;        &#x2F;^#&#x2F;<br>        &#x2F;正则表达式&#x2F;,&#x2F;正则表达式&#x2F;</p>
-<h4 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h4><h5 id="d-删除整行"><a href="#d-删除整行" class="headerlink" title="d    删除整行"></a><strong>d    删除整行</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;1d&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# sed &#x27;1,5d&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# sed &#x27;/^#/d&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# sed &#x27;/^\//d&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# netstat -antp | sed &#x27;1,2d&#x27;</span><br></pre></td></tr></table></figure>
+<h5 id="line常用的写法"><a href="#line常用的写法" class="headerlink" title="line常用的写法"></a>line常用的写法</h5><ul>
+<li><p>line        哪些行           CMD        操作</p>
+<ul>
+<li>line不写，表示对文件每一行进行操作</li>
+</ul>
+</li>
+<li><p>行号        10</p>
+</li>
+<li><p>起始行号,终止行号 </p>
+<ul>
+<li>5,10</li>
+<li>5,+3</li>
+</ul>
+</li>
+<li><p>&#x2F;正则表达式&#x2F;        &#x2F;^#&#x2F;</p>
+</li>
+<li><p>&#x2F;正则表达式&#x2F;,&#x2F;正则表达式&#x2F;</p>
+</li>
+</ul>
+<h4 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h4><h5 id="d-删除整行"><a href="#d-删除整行" class="headerlink" title="d    删除整行"></a>d    删除整行</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;1d&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# sed &#x27;1,5d&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# sed &#x27;/^#/d&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# sed &#x27;/^\//d&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# netstat -antp | sed &#x27;1,2d&#x27;</span><br></pre></td></tr></table></figure>
 
-<h5 id="p-显示整行"><a href="#p-显示整行" class="headerlink" title="p    显示整行"></a><strong>p    显示整行</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;/^#/p&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# df -hT | sed -n &#x27;/^\/dev/p&#x27;</span><br></pre></td></tr></table></figure>
+<h5 id="p-显示整行"><a href="#p-显示整行" class="headerlink" title="p    显示整行"></a>p    显示整行</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;/^#/p&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# df -hT | sed -n &#x27;/^\/dev/p&#x27;</span><br></pre></td></tr></table></figure>
 
-<h5 id="a-内容-追加内容"><a href="#a-内容-追加内容" class="headerlink" title="a   \内容        追加内容"></a><strong>a   \内容        追加内容</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;$a \10.1.1.1  node01.linux.com&#x27; /etc/hosts</span><br><span class="line">[root@localhost ~]# sed &#x27;$a \export JAVA_HOME=/opt/jdk&#x27; /etc/profile</span><br></pre></td></tr></table></figure>
+<h5 id="a-内容-追加内容"><a href="#a-内容-追加内容" class="headerlink" title="a   \内容        追加内容"></a>a   \内容        追加内容</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;$a \10.1.1.1  node01.linux.com&#x27; /etc/hosts</span><br><span class="line">[root@localhost ~]# sed &#x27;$a \export JAVA_HOME=/opt/jdk&#x27; /etc/profile</span><br></pre></td></tr></table></figure>
 
-<h5 id="i-内容-插入内容"><a href="#i-内容-插入内容" class="headerlink" title="i \内容        插入内容"></a><strong>i \内容        插入内容</strong></h5><p>​        </p>
+<h5 id="i-内容-插入内容"><a href="#i-内容-插入内容" class="headerlink" title="i \内容        插入内容"></a>i \内容        插入内容</h5><p>​        </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;i \172.16.10.1 www.linux.com&#x27; /etc/hosts</span><br><span class="line">[root@localhost ~]# sed &#x27;/datadir/i \server_id=10\nlog_bin=master&#x27; /etc/my.cnf</span><br></pre></td></tr></table></figure>
 
-<h5 id="c-内容-整行替换"><a href="#c-内容-整行替换" class="headerlink" title="c   \内容        整行替换"></a><strong>c   \内容        整行替换</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;/#Port/c \Port 55555&#x27; /etc/ssh/sshd_config </span><br></pre></td></tr></table></figure>
+<h5 id="c-内容-整行替换"><a href="#c-内容-整行替换" class="headerlink" title="c   \内容        整行替换"></a>c   \内容        整行替换</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;/#Port/c \Port 55555&#x27; /etc/ssh/sshd_config </span><br></pre></td></tr></table></figure>
 
-<h5 id="w-文件名称-另存为"><a href="#w-文件名称-另存为" class="headerlink" title="w 文件名称        另存为"></a><strong>w 文件名称        另存为</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;/^#/w /tmp/test01&#x27; /etc/fstab </span><br></pre></td></tr></table></figure>
+<h5 id="w-文件名称-另存为"><a href="#w-文件名称-另存为" class="headerlink" title="w 文件名称        另存为"></a>w 文件名称        另存为</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;/^#/w /tmp/test01&#x27; /etc/fstab </span><br></pre></td></tr></table></figure>
 
-<h5 id="r-文件名称-合并文件"><a href="#r-文件名称-合并文件" class="headerlink" title="r  文件名称        合并文件"></a><strong>r  文件名称        合并文件</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;$r /etc/hosts&#x27; /etc/redhat-release </span><br></pre></td></tr></table></figure>
+<h5 id="r-文件名称-合并文件"><a href="#r-文件名称-合并文件" class="headerlink" title="r  文件名称        合并文件"></a>r  文件名称        合并文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;$r /etc/hosts&#x27; /etc/redhat-release </span><br></pre></td></tr></table></figure>
 
-<h5 id="x3D-显示行号-x2F-统计行数"><a href="#x3D-显示行号-x2F-统计行数" class="headerlink" title="&#x3D;        显示行号&#x2F;统计行数"></a><strong>&#x3D;        显示行号&#x2F;统计行数</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;$=&#x27; /etc/fstab </span><br></pre></td></tr></table></figure>
+<h5 id="x3D-显示行号-x2F-统计行数"><a href="#x3D-显示行号-x2F-统计行数" class="headerlink" title="&#x3D;        显示行号&#x2F;统计行数"></a>&#x3D;        显示行号&#x2F;统计行数</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;$=&#x27; /etc/fstab </span><br></pre></td></tr></table></figure>
 
-<h5 id="n-读取下一行"><a href="#n-读取下一行" class="headerlink" title="n         读取下一行"></a><strong>n         读取下一行</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;&#123;n;p&#125;&#x27; /tmp/file01 </span><br><span class="line">[root@localhost ~]# sed -n &#x27;&#123;p;n&#125;&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
+<h5 id="n-读取下一行"><a href="#n-读取下一行" class="headerlink" title="n         读取下一行"></a>n         读取下一行</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;&#123;n;p&#125;&#x27; /tmp/file01 </span><br><span class="line">[root@localhost ~]# sed -n &#x27;&#123;p;n&#125;&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
 
-<h5 id="s-x2F-旧内容-x2F-新内容-x2F-修饰符"><a href="#s-x2F-旧内容-x2F-新内容-x2F-修饰符" class="headerlink" title="s&#x2F;旧内容&#x2F;新内容&#x2F;[修饰符]"></a><strong>s&#x2F;旧内容&#x2F;新内容&#x2F;[修饰符]</strong></h5><p>​        文件查找替换<br>​        旧内容支持正则表达式</p>
+<h5 id="s-x2F-旧内容-x2F-新内容-x2F-修饰符"><a href="#s-x2F-旧内容-x2F-新内容-x2F-修饰符" class="headerlink" title="s&#x2F;旧内容&#x2F;新内容&#x2F;[修饰符]"></a>s&#x2F;旧内容&#x2F;新内容&#x2F;[修饰符]</h5><p>​        文件查找替换<br>​        旧内容支持正则表达式</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;/^UUID=/s/UUID/uuid/&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# sed &#x27;$s/4/8/&#x27; /etc/fstab </span><br><span class="line"></span><br><span class="line">[root@localhost ~]# sed &#x27;$s/[0-9]/!/g&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# sed &#x27;s/[0-9]/!/g&#x27; /etc/fstab </span><br><span class="line"></span><br><span class="line">[root@localhost ~]# sed &#x27;$s/\//?/g&#x27; /etc/fstab </span><br><span class="line">[root@localhost ~]# sed &#x27;$s|/|?|g&#x27; /etc/fstab </span><br></pre></td></tr></table></figure>
 
-<h5 id="反向引用"><a href="#反向引用" class="headerlink" title="反向引用"></a><strong>反向引用</strong></h5><p>​        \1    \2    \3<br>​    依次表示引用正则表达式中第一个分组内容、第二个分组内容、依次类推</p>
+<h5 id="反向引用"><a href="#反向引用" class="headerlink" title="反向引用"></a>反向引用</h5><p>​        \1    \2    \3<br>​    依次表示引用正则表达式中第一个分组内容、第二个分组内容、依次类推</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;s|\(l..e\)|\1r|&#x27; /tmp/file01 </span><br><span class="line">[root@localhost ~]# sed &#x27;s|l\(..e\)|L\1|&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
 
-<h5 id="amp-匹配的所有旧内容"><a href="#amp-匹配的所有旧内容" class="headerlink" title="&amp;: 匹配的所有旧内容"></a><strong>&amp;: 匹配的所有旧内容</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;s|l..e|&amp;r|&#x27; /tmp/file01</span><br></pre></td></tr></table></figure>
+<h5 id="amp-匹配的所有旧内容"><a href="#amp-匹配的所有旧内容" class="headerlink" title="&amp;: 匹配的所有旧内容"></a>&amp;: 匹配的所有旧内容</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed &#x27;s|l..e|&amp;r|&#x27; /tmp/file01</span><br></pre></td></tr></table></figure>
 
-<h4 id="常用选项"><a href="#常用选项" class="headerlink" title="常用选项"></a>常用选项</h4><h5 id="n-取消显示模式空间的内容"><a href="#n-取消显示模式空间的内容" class="headerlink" title="-n    取消显示模式空间的内容"></a><strong>-n    取消显示模式空间的内容</strong></h5><h5 id="i-修改原文件"><a href="#i-修改原文件" class="headerlink" title="-i     修改原文件"></a><strong>-i</strong>     <strong>修改原文件</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -i &#x27;/^$/d&#x27; /etc/fstab</span><br></pre></td></tr></table></figure>
+<h4 id="常用选项"><a href="#常用选项" class="headerlink" title="常用选项"></a>常用选项</h4><h5 id="n-取消显示模式空间的内容"><a href="#n-取消显示模式空间的内容" class="headerlink" title="-n    取消显示模式空间的内容"></a>-n    取消显示模式空间的内容</h5><h5 id="i-修改原文件"><a href="#i-修改原文件" class="headerlink" title="-i     修改原文件"></a>-i     修改原文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -i &#x27;/^$/d&#x27; /etc/fstab</span><br></pre></td></tr></table></figure>
 
-<h5 id="e-同时做多个修改"><a href="#e-同时做多个修改" class="headerlink" title="-e    同时做多个修改"></a><strong>-e    同时做多个修改</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -e &#x27;/^#/d&#x27; -e &#x27;/UUID/d&#x27; /etc/fstab </span><br></pre></td></tr></table></figure>
+<h5 id="e-同时做多个修改"><a href="#e-同时做多个修改" class="headerlink" title="-e    同时做多个修改"></a>-e    同时做多个修改</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -e &#x27;/^#/d&#x27; -e &#x27;/UUID/d&#x27; /etc/fstab </span><br></pre></td></tr></table></figure>
 
-<h5 id="f-操作文件"><a href="#f-操作文件" class="headerlink" title="-f  操作文件"></a><strong>-f  操作文件</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /tmp/list</span><br><span class="line">/^#/d</span><br><span class="line">/UUID/d</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# sed -f /tmp/list  /etc/fstab </span><br></pre></td></tr></table></figure>
+<h5 id="f-操作文件"><a href="#f-操作文件" class="headerlink" title="-f  操作文件"></a>-f  操作文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /tmp/list</span><br><span class="line">/^#/d</span><br><span class="line">/UUID/d</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# sed -f /tmp/list  /etc/fstab </span><br></pre></td></tr></table></figure>
 
-<h5 id="r-支持扩展正则表达式"><a href="#r-支持扩展正则表达式" class="headerlink" title="-r    支持扩展正则表达式"></a><strong>-r    支持扩展正则表达式</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -r &#x27;s|l(..e)|L\1|&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
+<h5 id="r-支持扩展正则表达式"><a href="#r-支持扩展正则表达式" class="headerlink" title="-r    支持扩展正则表达式"></a>-r    支持扩展正则表达式</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -r &#x27;s|l(..e)|L\1|&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
 
-<h5 id="–follow-symlinks-软链接文件"><a href="#–follow-symlinks-软链接文件" class="headerlink" title="–follow-symlinks    软链接文件"></a><strong>–follow-symlinks    软链接文件</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -ri --follow-symlinks &#x27;2d&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
+<h5 id="–follow-symlinks-软链接文件"><a href="#–follow-symlinks-软链接文件" class="headerlink" title="–follow-symlinks    软链接文件"></a>–follow-symlinks    软链接文件</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -ri --follow-symlinks &#x27;2d&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
 
-<h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><p>默认情况下，awk可以使用<strong>空白字符</strong>分割文本, awk内部可以分别**$1, $2**变量代表第一段内容<br>        -F选项指定分割符<br>        逐行处理</p>
+<h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><p>默认情况下，awk可以使用空白字符分割文本, awk内部可以分别$1, $2变量代表第一段内容<br>-F选项指定分割符<br>逐行处理</p>
 <h4 id="awk命令格式"><a href="#awk命令格式" class="headerlink" title="awk命令格式"></a>awk命令格式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk [option] &#x27;script&#x27; 文件名称  文件名称 </span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk [option] &#x27;PATTERN&#123;action&#125;&#x27;  文件名称  文件名称</span><br></pre></td></tr></table></figure>
 
-<h5 id="常用action"><a href="#常用action" class="headerlink" title="常用action"></a>常用action</h5><p><strong>print操作</strong></p>
+<h5 id="常用action"><a href="#常用action" class="headerlink" title="常用action"></a>常用action</h5><p>print操作</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;1p&#x27; /etc/passwd | awk -F: &#x27;&#123;print $1&#125;&#x27;</span><br><span class="line">[root@localhost ~]# sed -n &#x27;1p&#x27; /etc/passwd | awk -F: &#x27;&#123;print $0&#125;&#x27;</span><br><span class="line">[root@localhost ~]# sed -n &#x27;1p&#x27; /etc/passwd | awk -F: &#x27;&#123;print $1, $3&#125;&#x27;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;1,3p&#x27; /etc/passwd | awk -F: &#x27;&#123;print &quot;用户名:&quot;,$1&#125;&#x27;</span><br><span class="line">[root@localhost ~]# rpm -qa | grep php | awk -F-5 &#x27;&#123;print &quot;rpm -e --nodeps&quot;, $1&#125;&#x27; | bash</span><br></pre></td></tr></table></figure>
 
-<p><strong>printf操作</strong><br>            格式化输出内容<br>            使用格式<br>            printf “格式格式”,内容,内容<br>                占位符<br>                        <strong>%s    字符串</strong><br>                        <strong>%d    整数</strong><br>                        <strong>%f    浮点数</strong></p>
-<p><strong>设置字符的宽度</strong><br>%10s</p>
+<p>printf操作</p>
+<ul>
+<li><pre><code>        格式化输出内容
+</code></pre>
+</li>
+<li><pre><code>        使用格式
+</code></pre>
+<ul>
+<li><pre><code>        printf &quot;格式格式&quot;,内容,内容
+</code></pre>
+</li>
+</ul>
+</li>
+<li><pre><code>        占位符
+</code></pre>
+<ul>
+<li><pre><code>        %s    字符串
+</code></pre>
+</li>
+<li><pre><code>        %d    整数
+</code></pre>
+</li>
+<li><pre><code>        %f    浮点数
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>设置字符的宽度<br>%10s</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;&#123;printf &quot;%20s&quot;, $2&#125;&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
 
 <p>默认数据在指定的宽度字符是以右对齐的方式显示</p>
-<p><strong>设置左对齐</strong><br>%-10s</p>
+<p>设置左对齐<br>%-10s</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;&#123;printf &quot;%-20s&quot;, $2&#125;&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
 
-<p><strong>默认没有换行，如果需要换行，手动添加换行符\n</strong></p>
+<p>默认没有换行，如果需要换行，手动添加换行符\n</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;&#123;printf &quot;%-20s\n&quot;, $2&#125;&#x27; /tmp/file01 </span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;1,3p&#x27; /etc/passwd | awk -F: &#x27;&#123;printf &quot;%-8s%-16s\n&quot;, $1, $7&#125;&#x27;</span><br><span class="line">[root@localhost ~]# df -hT | sed -n &#x27;/^\/dev/p&#x27; | awk &#x27;&#123;printf &quot;%-10s%-30s%-10s%-12s%-10s%-8s\n&quot;,&quot;磁盘名称:&quot;, $1, &quot;挂载目录:&quot;, $7, &quot;剩余空间:&quot;, $6&#125;&#x27;</span><br></pre></td></tr></table></figure>
@@ -653,20 +752,37 @@
 
 
 
-<h4 id="awk自定义变量"><a href="#awk自定义变量" class="headerlink" title="awk自定义变量"></a>awk自定义变量</h4><p> <strong>-v 变量名称&#x3D;值</strong>                             </p>
+<h4 id="awk自定义变量"><a href="#awk自定义变量" class="headerlink" title="awk自定义变量"></a>awk自定义变量</h4><p> -v 变量名称&#x3D;值                             </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk -v name=&quot;martin&quot; &#x27;&#123;print &quot;hello&quot;, name&#125;&#x27; /etc/fstab  [root@localhost ~]# awk -v number=100 &#x27;&#123;print number&#125;&#x27; /etc/fstab      </span><br></pre></td></tr></table></figure>
 
-<h4 id="awk常用文本处理模式"><a href="#awk常用文本处理模式" class="headerlink" title="awk常用文本处理模式"></a>awk常用文本处理模式</h4><h5 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a><strong>表达式</strong></h5><p><strong>比较运算符</strong><br>            &#x3D;&#x3D;, &gt;, &gt;&#x3D;, &lt;, &lt;&#x3D;, !&#x3D;<br>            数据 ~ 正则表达式<br>                    判断数据是否可以被正则表达式<br>            数据  !~ 正则表达式<br>        <strong>逻辑运算符</strong><br>            &amp;&amp;    并且<br>            ||    或者</p>
+<h4 id="awk常用文本处理模式"><a href="#awk常用文本处理模式" class="headerlink" title="awk常用文本处理模式"></a>awk常用文本处理模式</h4><h5 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h5><ul>
+<li><p>比较运算符</p>
+<ul>
+<li>&#x3D;&#x3D;, &gt;, &gt;&#x3D;, &lt;, &lt;&#x3D;, !&#x3D;</li>
+<li>数据 ~ 正则表达式<ul>
+<li>判断数据是否可以被正则表达式</li>
+</ul>
+</li>
+<li>数据  !~ 正则表达式</li>
+</ul>
+</li>
+<li><p>逻辑运算符</p>
+<ul>
+<li>&amp;&amp;    并且 </li>
+<li>||    或者</li>
+</ul>
+</li>
+</ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk -F: &#x27;$3&gt;=1 &amp;&amp; $3 &lt;= 999&#123;print $1&#125;&#x27; /etc/passwd</span><br><span class="line">[root@localhost ~]# awk -F: &#x27;$7==&quot;/sbin/nologin&quot;&#123;print $1&#125;&#x27; /etc/passwd</span><br><span class="line">[root@localhost ~]# awk -F: &#x27;$7 ~ &quot;nologin$&quot;&#123;print $1&#125;&#x27; /etc/passwd</span><br><span class="line">[root@localhost ~]# df -hT | grep &quot;^/dev&quot; | awk &#x27;+$6&gt;20&#123;print &quot;磁盘名称:&quot;, $1, &quot;剩余空间&quot;, $5, &quot;挂载目录:&quot;, $NF&#125;&#x27;</span><br></pre></td></tr></table></figure>
 
-<h5 id="x2F-正则表达式-x2F"><a href="#x2F-正则表达式-x2F" class="headerlink" title="&#x2F;正则表达式&#x2F;"></a><strong>&#x2F;正则表达式&#x2F;</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# netstat -antp | awk &#x27;/^tcp/&#123;print $0&#125;&#x27;</span><br><span class="line">[root@localhost ~]# awk -F: &#x27;/^[rhg]/&#123;print $1&#125;&#x27; /etc/passwd</span><br><span class="line">[root@localhost ~]# ls -l /etc/ | awk &#x27;/^-/&#123;print $NF&#125;&#x27;</span><br></pre></td></tr></table></figure>
+<h5 id="x2F-正则表达式-x2F"><a href="#x2F-正则表达式-x2F" class="headerlink" title="&#x2F;正则表达式&#x2F;"></a>&#x2F;正则表达式&#x2F;</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# netstat -antp | awk &#x27;/^tcp/&#123;print $0&#125;&#x27;</span><br><span class="line">[root@localhost ~]# awk -F: &#x27;/^[rhg]/&#123;print $1&#125;&#x27; /etc/passwd</span><br><span class="line">[root@localhost ~]# ls -l /etc/ | awk &#x27;/^-/&#123;print $NF&#125;&#x27;</span><br></pre></td></tr></table></figure>
 
-<h5 id="x2F-正则表达式-x2F-x2F-正则表达式-x2F"><a href="#x2F-正则表达式-x2F-x2F-正则表达式-x2F" class="headerlink" title="&#x2F;正则表达式&#x2F;,&#x2F;正则表达式&#x2F;"></a><strong>&#x2F;正则表达式&#x2F;,&#x2F;正则表达式&#x2F;</strong></h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;/Sep 26 09:02:30/,/Sep 26 09:18:04/&#123;print $0&#125;&#x27; /var/log/messages</span><br></pre></td></tr></table></figure>
+<h5 id="x2F-正则表达式-x2F-x2F-正则表达式-x2F"><a href="#x2F-正则表达式-x2F-x2F-正则表达式-x2F" class="headerlink" title="&#x2F;正则表达式&#x2F;,&#x2F;正则表达式&#x2F;"></a>&#x2F;正则表达式&#x2F;,&#x2F;正则表达式&#x2F;</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# awk &#x27;/Sep 26 09:02:30/,/Sep 26 09:18:04/&#123;print $0&#125;&#x27; /var/log/messages</span><br></pre></td></tr></table></figure>
 
-<h5 id="BEGIN"><a href="#BEGIN" class="headerlink" title="BEGIN{}"></a><strong>BEGIN{}</strong></h5><p>定义awk开始处理内容前执行的操作 </p>
+<h5 id="BEGIN"><a href="#BEGIN" class="headerlink" title="BEGIN{}"></a>BEGIN{}</h5><p>定义awk开始处理内容前执行的操作 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;1,3p&#x27; /etc/passwd | awk -F: &#x27;BEGIN&#123;print &quot;----数据开始----&quot;&#125;&#123;print $1,$7&#125;&#x27; </span><br><span class="line">[root@localhost ~]# awk &#x27;BEGIN&#123;name=&quot;martin&quot;; print name&#125;&#x27;</span><br></pre></td></tr></table></figure>
 
-<h5 id="END"><a href="#END" class="headerlink" title="END{}"></a><strong>END{}</strong></h5><p>定义awk处理内容后要执行的操作 </p>
+<h5 id="END"><a href="#END" class="headerlink" title="END{}"></a>END{}</h5><p>定义awk处理内容后要执行的操作 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# sed -n &#x27;1,3p&#x27; /etc/passwd | awk -F: &#x27;BEGIN&#123;print &quot;----数据开始-----&quot;&#125;&#123;print $1, $7&#125;END&#123;print &quot;----数据结束----&quot;&#125;&#x27;</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# awk -v number=0 &#x27;&#123;number++&#125;END&#123;print number&#125;&#x27; /etc/passwd </span><br></pre></td></tr></table></figure>
 
 <h4 id="awk条件判断"><a href="#awk条件判断" class="headerlink" title="awk条件判断"></a>awk条件判断</h4><p>1、语法<br>if (条件) {操作}<br>if (条件) {操作} else {操作}<br>if (条件) {操作} else if (条件) {操作}</p>
@@ -699,7 +815,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;&#123;uv[$1]++&#125;END&#123;for(i in uv) &#123;print i, uv[i]&#125;&#125;&#x27; access_log</span><br><span class="line"></span><br><span class="line">awk &#x27;&#123;pv[$7]++&#125;END&#123;for(i in pv) &#123;print i, pv[i]&#125;&#125;&#x27; access_log          </span><br></pre></td></tr></table></figure>
 
 <p>​    </p>
-<h4 id="awk的内置函数"><a href="#awk的内置函数" class="headerlink" title="awk的内置函数"></a><strong>awk的内置函数</strong></h4><h5 id="split-字符串-数组-行分割符"><a href="#split-字符串-数组-行分割符" class="headerlink" title="split(字符串,数组,行分割符)"></a>split(字符串,数组,行分割符)</h5><p>使用分割符分割字符串, 将分割后的字符串保存到指定数组</p>
+<h4 id="awk的内置函数"><a href="#awk的内置函数" class="headerlink" title="awk的内置函数"></a>awk的内置函数</h4><h5 id="split-字符串-数组-行分割符"><a href="#split-字符串-数组-行分割符" class="headerlink" title="split(字符串,数组,行分割符)"></a>split(字符串,数组,行分割符)</h5><p>使用分割符分割字符串, 将分割后的字符串保存到指定数组</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;BEGIN&#123;split(&quot;a-b-c&quot;, data, &quot;-&quot;); print data[1]&#125;&#x27;</span><br><span class="line">awk &#x27;BEGIN&#123;split(&quot;a-b-c&quot;, data, &quot;-&quot;); print data[2]&#125;&#x27;</span><br><span class="line">awk &#x27;BEGIN&#123;split(&quot;a-b-c&quot;, data, &quot;-&quot;); print data[3]&#125;&#x27;</span><br></pre></td></tr></table></figure>
 
 
@@ -720,7 +836,7 @@
 
 
 <h5 id="systime"><a href="#systime" class="headerlink" title="systime()"></a>systime()</h5><p>返回系统当前时间</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;BEGIN&#123;print systime()&#125;&#x27;</span><br><span class="line">  awk &#x27;BEGIN&#123;now=systime(); print strftime(&quot;%F_%T&quot;, now)&#125;&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">awk &#x27;BEGIN&#123;print systime()&#125;&#x27;</span><br><span class="line">awk &#x27;BEGIN&#123;now=systime(); print strftime(&quot;%F_%T&quot;, now)&#125;&#x27;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -762,6 +878,27 @@
 <div class="post-nav">
 
 
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="/medias/10.jpg" class="lazyload placeholder" data-srcset="/medias/10.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+    </div>
+    <a href="/2022/03/18/NoSQL/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> 上一篇:
+        <div class="title-text">NoSQL</div>
+      </div>
+      
+      <!-- <div class="content">
+        NoSQL什么是NoSQL?
+非关系型数据库    NoSQL        Not Only SQL
+
+memcach
+      </div> -->
+    </a>
+  </div>
 
 
 

@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>MySQL | 周扬臻的个人博客</title>
+  <title>NoSQL | 周扬臻的个人博客</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -518,21 +518,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('/medias/4.jpg')">
+  background-position: center center;position: relative;background-image:url('/medias/10.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        MySQL
+        NoSQL
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> 发表于：2022-03-12 |
+          <i class="fas fa-calendar"></i> 发表于：2022-03-18 |
         </span>
       
 
@@ -556,214 +556,148 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="什么是MySQL-MySQL有什么优点"><a href="#什么是MySQL-MySQL有什么优点" class="headerlink" title="什么是MySQL? MySQL有什么优点?"></a>什么是MySQL? MySQL有什么优点?</h2><p>MySQL是一个关系型数据库管理系统</p>
-<p>简单明了 开源 可扩展且快速 兼容多个平台 高度安全</p>
-<p>客户端&#x2F;服务器架构 ODBC支持 SQL查询和命令 复写 事务 外键约束 数据字典</p>
-<h2 id="什么是关系型数据库？"><a href="#什么是关系型数据库？" class="headerlink" title="什么是关系型数据库？"></a>什么是关系型数据库？</h2><p>所谓的关系型数据库，是建立在关系模型基础上的数据库，借助于集合代数等数学概念和方法来处理数据库中的数据</p>
-<h2 id="MySQL相关文件"><a href="#MySQL相关文件" class="headerlink" title="MySQL相关文件"></a>MySQL相关文件</h2><ul>
-<li><p>错误日志</p>
+        <h1 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h1><h2 id="什么是NoSQL"><a href="#什么是NoSQL" class="headerlink" title="什么是NoSQL?"></a>什么是NoSQL?</h2><ul>
+<li><p>非关系型数据库    NoSQL        Not Only SQL</p>
+</li>
+<li><p>memcached、mongoDB、redis</p>
+</li>
+<li><p>优势: 支持高并发、速度快</p>
 <ul>
-<li>&#x2F;var&#x2F;log&#x2F;mysqld.log</li>
-</ul>
+<li><p>没有严格的数据约束规范(数据类型、主键等)</p>
 </li>
-<li><p>默认数据目录</p>
+<li><p>以key-value键值对的方式进行存储</p>
+</li>
+<li><p>基于内存进行存储</p>
+</li>
+<li><p>基于O1算法开发</p>
+</li>
+<li><p>适用场景:</p>
 <ul>
-<li>&#x2F;var&#x2F;lib&#x2F;mysql</li>
+<li><p>缓存服务器 </p>
+</li>
+<li><p>存储业务session</p>
+</li>
 </ul>
 </li>
-<li><p>配置文件</p>
+</ul>
+</li>
+</ul>
+<h2 id="Redis-配置解析"><a href="#Redis-配置解析" class="headerlink" title="Redis 配置解析"></a>Redis 配置解析</h2><p><strong>1、加载子配置文件</strong>  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># include /path/to/local.conf </span><br><span class="line"># include /path/to/other.conf     </span><br></pre></td></tr></table></figure>
+
+<p><strong>2、加载模块</strong>     </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loadmodule /path/to/my_module.so    </span><br></pre></td></tr></table></figure>
+
+<p><strong>3、修改redis监听地址</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bind x.x.x.x     </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# redis-cli -h 192.168.140.10 192.168.140.10:6379&gt;  192.168.140.10:6379&gt; set a 10 OK    </span><br></pre></td></tr></table></figure>
+
+<p><strong>4、修改redis端口</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">port 6379        </span><br></pre></td></tr></table></figure>
+
+<p><strong>5、修改redis接收请求队列的长度</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcp-backlog 511   </span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>&#x2F;etc&#x2F;my.cnf</li>
+<li>需要调整somaxconn、tcp_max_syn_backlog内核参数</li>
+<li>somaxconn: 系统层面，网卡接收请求的队列长度</li>
+<li>tcp_max_syn_backlog：系统层面，网卡接收TCP第一次握手的队列长度</li>
 </ul>
-</li>
-<li><p>据目录</p>
+<p><strong>临时修改内核参数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# echo 1000 &gt; /proc/sys/net/core/somaxconn</span><br><span class="line">[root@localhost ~]# echo 1000 &gt; /proc/sys/net/ipv4/tcp_max_syn_backlog</span><br><span class="line">[root@localhost ~]# </span><br><span class="line">[root@localhost ~]# cat /proc/sys/net/core/somaxconn </span><br><span class="line">1000</span><br><span class="line">[root@localhost ~]# cat /proc/sys/net/ipv4/tcp_max_syn_backlog </span><br><span class="line">1000</span><br></pre></td></tr></table></figure>
+
+<p><strong>永久修改内核参数</strong></p>
+<p>&#x2F;etc&#x2F;sysctl.conf</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# cat /etc/sysctl.conf </span><br><span class="line">net.core.somaxconn = 1000</span><br><span class="line">net.ipv4.tcp_max_syn_backlog = 1000</span><br><span class="line"></span><br><span class="line">[root@localhost ~]# sysctl -p</span><br><span class="line">net.core.somaxconn = 1000</span><br><span class="line">net.ipv4.tcp_max_syn_backlog = 1000</span><br></pre></td></tr></table></figure>
+
+<p>查看所有参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysctl -a        </span><br></pre></td></tr></table></figure>
+
+<p><strong>6、设置客户端空闲的超时时间</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timeout 30      </span><br></pre></td></tr></table></figure>
+
+<p><strong>7、设置redis在后台启动</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">daemonize yes    </span><br></pre></td></tr></table></figure>
+
+<p><strong>8、redis PID文件</strong> </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pidfile /var/run/redis_6379.pid       </span><br></pre></td></tr></table></figure>
+
+<p><strong>9、错误日志</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loglevel warning logfile &quot;/var/log/redis_6379.log&quot;      </span><br></pre></td></tr></table></figure>
+
+<p><strong>10、定义redis自动持久化的频率</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">save 900 1 save 300 10 save 60 10000         </span><br></pre></td></tr></table></figure>
+
+<p><strong>11、指定rdb数据文件的存储位置</strong> </p>
+<p><strong>手动持久化</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; bgsave;     </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dbfilename dump_6379.rdb </span><br><span class="line">dir /usr/local/redis/data   </span><br></pre></td></tr></table></figure>
+
+<p><strong>12、启用aof日志</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">appendonly yes</span><br><span class="line">appendfilename &quot;appendonly_6379.aof&quot;</span><br></pre></td></tr></table></figure>
+
+<p><strong>13、设置redis密码</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">requirepass redhat     </span><br></pre></td></tr></table></figure>
+
+<p><strong>14、设置命令别名</strong>        </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rename-command set add           </span><br></pre></td></tr></table></figure>
+
+<p><strong>15、设置redis最大并发连接</strong>               </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maxclients 10000          </span><br></pre></td></tr></table></figure>
+
+<p><strong>16、设置最大内存策略</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maxmemory 200M maxmemory-policy noeviction      </span><br></pre></td></tr></table></figure>
+
+<p><strong>支持的策略:</strong> </p>
 <ul>
-<li>​    datadir</li>
-</ul>
-</li>
-<li><p>套接字文件</p>
+<li><p>noeviction    </p>
 <ul>
-<li>socket</li>
-<li>保存mysql监听的IP和端口</li>
-<li>用于接收客户端连接请求</li>
+<li>默认策略 内存空间不足时，添加新的数据会返回报错信息</li>
 </ul>
 </li>
-<li><p>pid文件</p>
+<li><p>allkeys‐lru    </p>
 <ul>
-<li>pid-file         </li>
-<li>记录了该进程的ID</li>
+<li>内存不足时，redis会按照LRU(最近最少访问)算法清除缓存数据</li>
 </ul>
 </li>
-<li><p>日志类型</p>
+<li><p>allkeys‐random  </p>
 <ul>
-<li>错误日志</li>
-<li>慢查询日志  记录慢查询</li>
-<li>二进制日志  存储MySQL服务器产生所有写操作 <ul>
-<li>实际应用:</li>
-<li>备份 恢复</li>
-<li>主从复制</li>
+<li>内存不足时，redis会随机删除缓存数据</li>
 </ul>
 </li>
-</ul>
-</li>
-</ul>
-<h2 id="MySQL备份、恢复"><a href="#MySQL备份、恢复" class="headerlink" title="MySQL备份、恢复"></a>MySQL备份、恢复</h2><h3 id="备份类型、工具"><a href="#备份类型、工具" class="headerlink" title="备份类型、工具"></a>备份类型、工具</h3><h4 id="根据服务是否在线"><a href="#根据服务是否在线" class="headerlink" title="根据服务是否在线"></a>根据服务是否在线</h4><ul>
-<li><p>热备份</p>
+<li><p>volatile‐lru    </p>
 <ul>
-<li>在备份的过程，可以继续执行数据的读写操作 </li>
-<li>服务持续运行的状态</li>
+<li>内存不足时，redis会在设置了过期时间的缓存数据中，按照LRU算法清除数据</li>
 </ul>
 </li>
-<li><p>温备份</p>
+<li><p>volatile‐random </p>
 <ul>
-<li>在备份的过程，只允许读操作、不允许写操作</li>
-<li>锁表</li>
+<li>内存不足时，redis会在设置了过期时间的缓存数据中，随机清除数据</li>
 </ul>
 </li>
-<li><p>冷备份</p>
+<li><p>volatile‐ttl    </p>
 <ul>
-<li>停止数据库服务、备份数据</li>
-<li>影响业务运行</li>
+<li>内存不足时，redis会在设置了过期时间的缓存数据中，优先清除过期时间较早的数据</li>
 </ul>
 </li>
-</ul>
-<h4 id="根据备份的数据量大小"><a href="#根据备份的数据量大小" class="headerlink" title="根据备份的数据量大小"></a>根据备份的数据量大小</h4><ul>
-<li><p>完全备份</p>
+<li><p>allkeys-lfu</p>
 <ul>
-<li>每次备份，备份所有数据</li>
+<li>内存不足时，redis会按照LFU(最不经常使用)算法清除缓存数据</li>
 </ul>
 </li>
-<li><p>增量备份</p>
+<li><p>volatile-lfu</p>
 <ul>
-<li>仅备份上一次完全备份后变化的数据</li>
-<li>仅备份上一次增量备份后变化的数据</li>
-</ul>
-</li>
-<li><p>差异备份 </p>
-<ul>
-<li>仅备份上一次完全备份后变化的数据</li>
-</ul>
-</li>
-<li><p>备份策略:</p>
-<ul>
-<li>完全 + 增量 </li>
-<li>完全 + 差异</li>
+<li>内存不足时，redis会在设置了过期时间的缓存数据中，按照LFU算法清除数据</li>
 </ul>
 </li>
 </ul>
-<h4 id="根据备份形成的结果"><a href="#根据备份形成的结果" class="headerlink" title="根据备份形成的结果"></a>根据备份形成的结果</h4><ul>
-<li><p>逻辑备份</p>
-<ul>
-<li>将数据库执行的写操作转换成SQL语句，保存到文件中</li>
-<li>.sql</li>
-<li>备份工具 mysqldump</li>
-</ul>
-</li>
-<li><p>物理备份</p>
-<ul>
-<li>直接拷贝数据文件</li>
-<li>备份工具<ul>
-<li>cp、tar</li>
-<li>xtrabackup    开源 percona</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="备份哪些？"><a href="#备份哪些？" class="headerlink" title="备份哪些？"></a>备份哪些？</h4><p>数据、二进制日志、配置文件</p>
-<p>注意:<br>            MySQL在恢复数据时，二进制日志一样会记录写操作，建议临时关闭</p>
-<h2 id="主从复制、读写分离"><a href="#主从复制、读写分离" class="headerlink" title="主从复制、读写分离"></a><strong>主从复制、读写分离</strong></h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>Master服务器将写操作保存到二进制日志，通过网络将事件发送给slave服务器slave服务器产生I&#x2F;O thread线程接收二进制日志事件，并将该事件写入到本地的中继日志relay log，同时产生SQL thread线程从中继日志中读取操作执行操作，确保数据同步</p>
-<p><img src="https://raw.githubusercontent.com/zhouyz1123/image/master/blogImg/clipboard.png" class="lazyload placeholder" data-srcset="https://raw.githubusercontent.com/zhouyz1123/image/master/blogImg/clipboard.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h3 id="核心关注点"><a href="#核心关注点" class="headerlink" title="核心关注点"></a>核心关注点</h3><p>数据同步</p>
-<p>复制延迟时间</p>
-<h3 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h3><p>配置server_id</p>
-<p>Master服务器启用二进制日志</p>
-<p>Master服务器要存在允许从服务器远程 连接的用户 </p>
-<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>避免数据库单点故障</p>
-<p>便于冷备份</p>
-<ul>
-<li><p>读写分离实现方式：</p>
-<ul>
-<li>1、开发代码 </li>
-<li>2、数据库中间件<ul>
-<li>mysql-proxy    [官网]</li>
-<li>mycat</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="常见主从复制架构"><a href="#常见主从复制架构" class="headerlink" title="常见主从复制架构"></a>常见主从复制架构</h3><ul>
-<li><p>一主一从</p>
-</li>
-<li><p>一主多从</p>
-<ul>
-<li>实现读操作的负载均衡</li>
-</ul>
-</li>
-<li><p>双主复制</p>
-</li>
-</ul>
-<h3 id="主从复制工作方式"><a href="#主从复制工作方式" class="headerlink" title="主从复制工作方式"></a>主从复制工作方式</h3><h4 id="异步-默认"><a href="#异步-默认" class="headerlink" title="异步(默认)"></a>异步(默认)</h4><p>主库将已经提交的事务event 写入binlog后，即返回成功给app，该模式下并不保证任何已经提交的事务会传递到任何slave并被成功应用。</p>
-<h5 id="binlog-position-GTID"><a href="#binlog-position-GTID" class="headerlink" title="(binlog+position || GTID)"></a>(binlog+position || GTID)</h5><p>基于gtid的主从复制原理</p>
-<p>每个mysql数据库上都有一个唯一uuid</p>
-<p>每个事务生成一个id</p>
-<p>gtid由上面两者组合： uuid+事务id</p>
-<ul>
-<li><p>优势 </p>
-<ul>
-<li><p>相对使用binlog+position的方法来说</p>
-</li>
-<li><p>gtid让配置主从更加方便</p>
-</li>
-<li><p>从提升为主时比较方便</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h4><p> 当主库提交一个事务 event，主库会等待该事务被传递到所有的slave上，且所有slave applay 该事务&#x2F;event 通知主库之后，才会返回回话，事务已经成功。</p>
-<h4 id="半同步-借助插件google公司-semi-sync"><a href="#半同步-借助插件google公司-semi-sync" class="headerlink" title="半同步(借助插件google公司 semi sync)"></a>半同步(借助插件google公司 semi sync)</h4><p>Semisynchronous Replication模式下,在主库上提交一个事务&#x2F;event，它会等待至少一个slave通知主库，slave 已经接收到传递过来的events并写入relay log，才返回给回话层 写入成功，或者直到传送日志发生超时。</p>
-<p>优点：当事务返回成功给客户端时，则事务至少在两台机器上存在，增强数据安全性。相比异步模式和全同步模式，是一种折中。</p>
-<p> 缺点：半同步的确会对数据库性能有一定影响，因为事务的提交必须等待slave 反馈。性能损耗取决于tcp&#x2F;IP 网络传输时间，也即传输已提交事务和等待slave 反馈已经接收事务的时间。</p>
-<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>从定义中可以看出 异步模式不能保证数据的安全性，因为它不等待主库提交的事务在slave 上落盘，而全同步模式由于要等待所有的slave 确认已提交事务成功被应用，如此则会带来事务处理上的延时。semi sync 则取了一个比较折中的方式，确保已提交的事务必须存在于至少两个机器(主库和任一备库)，立即返回给客户端 事务成功。</p>
-<h2 id="什么是MyCAT"><a href="#什么是MyCAT" class="headerlink" title="什么是MyCAT?"></a>什么是MyCAT?</h2><p>MyCat是目前最流行的基于java语言编写的数据库中间件，是一个实现MySQL协议的服务器，前端用户可以把它看作是一个数据库代理，用MySQL客户端工具和命令行访问，而其后端可以用MySQL原生协议与多个MySQL服务器通信，也可以用JDBC协议与大多数主流数据库服务器通信，其核心功能是分库分表。配合数据库的主从模式还可实现读写分离。</p>
-<h3 id="什么是分库分表"><a href="#什么是分库分表" class="headerlink" title="什么是分库分表?"></a>什么是分库分表?</h3><p>在业务数据量过多时，而且数据不断持续增长的情况下，为了缓解单台服务器的压力，可以考虑使用分库分表方案。分库分表实际上是两种方案，即分库(垂直切分)、分表(水平切分)</p>
-<h2 id="什么是MHA"><a href="#什么是MHA" class="headerlink" title="什么是MHA?"></a>什么是MHA?</h2><p>MHA（Master HA）是一款开源的 MySQL 的高可用程序</p>
-<ul>
-<li><p>应用场景:</p>
-<ul>
-<li>一主多从的环境</li>
-</ul>
-</li>
-<li><p>作用: </p>
-<ul>
-<li>提升主从复制环境中主服务器的可用性, 尽量减少故障时间</li>
-<li>周期性检测主服务器的运行状态，一旦检测到主服务器故障后，会在现有的从服  务器选举一个新主服务器，并把其他的从服务器自动连接到新主服务器上，继续维持主从复制的运行 </li>
-<li>同时MHA还会尝试检测旧主服务器二进制日志，将二进制日志文件在新主服务器执行，尽可能保证数据完整</li>
-</ul>
-</li>
-</ul>
-<h3 id="服务角色"><a href="#服务角色" class="headerlink" title="服务角色"></a>服务角色</h3><ul>
-<li><p>MHA 服务有两种角色</p>
-<ul>
-<li><p>MHA Manager(管理节点)</p>
-</li>
-<li><p>MHA Node(数据节点)</p>
-</li>
-</ul>
-</li>
-<li><p>MHA Manager：</p>
-<ul>
-<li>　　通常单独部署在一台独立机器上管理多个 master&#x2F;slave 集群(组)，每个 master&#x2F;slave 集群称作一个 application，用来管理统筹整个集群。</li>
-</ul>
-</li>
-<li><p>MHA node：</p>
-<ul>
-<li>　　运行在每台 MySQL 服务器上(master&#x2F;slave&#x2F;manager)，它通过监控具备解析和清理 logs 功能的脚本来加快故障转移。</li>
-<li>　　主要是接收管理节点所发出指令的代理，代理需要运行在每一个 mysql 节点上。简单讲 node 就是用来收集从节点服务器上所生成的 bin-log 。对比打算提升为新的主节点之上的从节点的是否拥有并完成操作，如果没有发给新主节点在本地应用后提升为主节点。</li>
-</ul>
-</li>
-</ul>
+<h2 id="怎么优化Redis"><a href="#怎么优化Redis" class="headerlink" title="怎么优化Redis?"></a>怎么优化Redis?</h2><p>修改redis接收请求队列的长度</p>
+<p>设置客户端空闲的超时时间</p>
+<p>定义redis自动持久化的频率</p>
+<p>设置redis最大并发连接</p>
+<p>设置最大内存策略</p>
 
       </div>
       <div class="post-tags-categories">
@@ -777,7 +711,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2022/03/12/MySQL/" target="_blank" title="MySQL">http://example.com/2022/03/12/MySQL/</a>
+    <a href="/2022/03/18/NoSQL/" target="_blank" title="NoSQL">http://example.com/2022/03/18/NoSQL/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -799,16 +733,17 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/9.jpg" class="lazyload placeholder" data-srcset="/medias/9.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/13.jpg" class="lazyload placeholder" data-srcset="/medias/13.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
     </div>
-    <a href="/2022/03/13/Linux%E4%B8%89%E5%89%91%E5%AE%A2(grep%E3%80%81sed%E3%80%81awk)/" class="post-nav-link">
+    <a href="/2022/03/19/MySQL%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> 上一篇:
-        <div class="title-text">Linux三剑客(grep、sed、awk)</div>
+        <div class="title-text">MySQL性能优化</div>
       </div>
       
       <!-- <div class="content">
-        Linux三剑客(grep、sed、awk)三剑客的功能非常强大，但我们只需要掌握他们分别擅长的领域即可：grep擅长查
+        MySQL性能优化既然谈到优化，一定想到要从多个维度进行优化。
+这里的优化维度有四个：SQL语句及索引、表结构设计、系统
       </div> -->
     </a>
   </div>
@@ -819,16 +754,15 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="/medias/6.jpg" class="lazyload placeholder" data-srcset="/medias/6.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="/medias/9.jpg" class="lazyload placeholder" data-srcset="/medias/9.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
     </div>
-    <a href="/2022/03/08/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%8F%8A%E5%85%B6%E6%A6%82%E5%BF%B5/" class="post-nav-link">
+    <a href="/2022/03/13/Linux%E4%B8%89%E5%89%91%E5%AE%A2(grep%E3%80%81sed%E3%80%81awk)/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fas fa-angle-right"></i>
-        <div class="title-text">基础知识及其概念</div>
+        <div class="title-text">Linux三剑客(grep、sed、awk)</div>
       </div>
       <!-- <div class="content">
-        基础知识及其概念OSI七层模型应用层提供了应用程序、软件(微信、QQ、浏览器等) 
-提供了人与网络间的接口(软件)、产生
+        Linux三剑客(grep、sed、awk)三剑客的功能非常强大，但我们只需要掌握他们分别擅长的领域即可：grep擅长查
       </div> -->
     </a>
   </div>
